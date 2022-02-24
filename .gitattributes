@@ -5,6 +5,7 @@
 * text=auto
 
 # Image formats
+*.[pP][nN][gG] lfs
 *.[eE][xX][rR] lfs
 
 # 3D formats
