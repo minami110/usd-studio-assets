@@ -1,0 +1,14 @@
+# Macros
+[attr]lfs filter=lfs diff=lfs merge=lfs -text
+
+# Global
+* text=auto
+
+# Image formats
+*.[eE][xX][rR] lfs
+
+# 3D formats
+## USD
+*.[uU][sS][dD][aA] text eol=lf
+*.[uU][sS][dD] lfs
+*.[uU][sS][dD][cC] lfs
