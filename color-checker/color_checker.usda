@@ -16,8 +16,6 @@ def Xform "color_checker" (
     }
 )
 {
-    uniform token[] xformOpOrder = ["xformOp:transform"]
-
     def Scope "looks"
     {
         def "classic_2005" (

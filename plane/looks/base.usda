@@ -1,0 +1,69 @@
+#usda 1.0
+
+class Material "_base"
+{
+    # ========================
+    # Material Outputs
+    # ========================
+    # USD Connections
+    token outputs:displacement.connect = </_base/usdPreviewSurface.outputs:displacement>
+    token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
+
+    # Arnold Connections
+    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:arnold:surface>
+
+    # ========================
+    # USD Shaders
+    # ========================
+    def Shader "usdPreviewSurface"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </_base/usdTexDiffuse.outputs:rgb>
+        float inputs:ior = 1
+        float inputs:roughness = 1
+        token outputs:displacement
+        token outputs:surface
+    }
+
+    def Shader "usdTexDiffuse"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (1, 0, 0.5, 1)
+        asset inputs:file = @@
+        float2 inputs:st.connect = </_base/usdSt.outputs:result>
+        token inputs:sourceColorSpace = "ACES - ACEScg"
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        vector3f outputs:rgb
+    }
+
+    def Shader "usdSt"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        token inputs:varname = "st"
+        float2 outputs:result
+    }
+
+    # ========================
+    # Arnold Shaders
+    # ========================
+
+    def Shader "arStandardSurface"
+    {
+        uniform token info:id = "standard_surface"
+        color3f inputs:base_color.connect = </_base/arTexBaseColor.outputs:out>
+        float inputs:base = 1
+        float inputs:specular = 0
+        token outputs:arnold:surface
+    }
+
+    def Shader "arTexBaseColor"
+    {
+        uniform token info:id = "image"
+        string inputs:color_space = "ACES - ACEScg"
+        asset inputs:filename = @@
+        color4f inputs:missing_texture_color = (1, 0, 0.5, 1)
+        token outputs:out
+    }
+}
+

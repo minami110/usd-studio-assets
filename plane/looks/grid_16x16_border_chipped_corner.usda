@@ -1,0 +1,21 @@
+#usda 1.0
+(
+    defaultPrim = "look"
+)
+
+def "look" (
+    references = @./base.usda@</_base>
+)
+{
+    # Override USD Preview Surface
+    over "usdTexDiffuse"
+    {
+        asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.png@
+    }
+
+    # Override Arnold Standard Surface
+    over "arTexBaseColor"
+    {
+        asset inputs:filename = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.png@
+    }
+}
