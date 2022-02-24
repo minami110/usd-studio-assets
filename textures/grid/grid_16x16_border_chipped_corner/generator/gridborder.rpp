@@ -1,0 +1,45 @@
+kernel GridBorder : ImageComputationKernel<ePixelWise> {
+
+    // Input image
+    Image<eRead, eAccessPoint, eEdgeClamped> src;
+    // Output image
+    Image<eWrite, eAccessPoint> dst;
+
+local:
+    void process(int2 pos) {
+
+        int x = pos.x;
+        int y = pos.y;
+        float r = 0;
+        int width = 2;
+        int size = 2048;
+
+        if ( x < width || x >= (size - width) || y < width || y >= (size - width))
+        {
+            r = 1;
+        }
+
+        if ((x >= (2048 - 128)) && (y >= (2048 - 128)))
+        {
+            r = 0;
+        }
+
+         if (x < 128  && (y >= (2048 - 128)) && (y < 2046))
+        {
+            r = 0;
+        }
+
+         if (y < 128  && (x >= (2048 - 128)) && (x < 2046))
+        {
+            r = 0;
+        }
+
+        if ( (x >= (2046)) && (y >= (2046)))
+        {
+            r = 1;
+        }
+
+
+        dst () = r;
+    }
+};
