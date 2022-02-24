@@ -1,0 +1,21 @@
+#usda 1.0
+(
+    defaultPrim = "classic_2005"
+)
+
+def "classic_2005" (
+    references = @./material_base.usda@</_material_base>
+)
+{
+    # Override USD Preview Surface
+    over "usdTexDiffuse"
+    {
+        asset inputs:file = @../textures/ColorChecker2005_diffuse_acescg.exr@
+    }
+
+    # Override Arnold Standard Surface
+    over "arTexBaseColor"
+    {
+        asset inputs:filename = @../textures/ColorChecker2005_diffuse_acescg.exr@
+    }
+}

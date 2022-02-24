@@ -1,0 +1,51 @@
+#usda 1.0
+(
+    defaultPrim = "color_checker"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "color_checker" (
+    kind = "component"
+
+    # Define Variants
+    append variantSets = ["model", "material"]
+    variants = {
+        string model = "simple"
+        string material = "classic_2014"
+    }
+)
+{
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+    def Scope "looks"
+    {
+        def "classic_2005" (
+            append payload = @./looks/classic_2005.usda@
+        ) { }
+        def "classic_2014" (
+            append payload = @./looks/classic_2014.usda@
+        ) { }
+    }
+
+    variantSet "model" = {
+        "simple" (
+            kind = "component"
+            append payload = @./geo/color_checker_box.usda@
+        ) { }
+        "solid" (
+            kind = "component"
+            append payload = @./geo/color_checker_plane.usda@
+        ) { }
+    }
+
+    variantSet "material" = {
+        "classic_2005" {
+            rel material:binding = </color_checker/looks/classic_2005>
+        }
+        "classic_2014" {
+            rel material:binding = </color_checker/looks/classic_2014>
+        }
+    }
+}
+

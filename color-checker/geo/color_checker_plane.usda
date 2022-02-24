@@ -1,0 +1,31 @@
+#usda 1.0
+(
+    defaultPrim = "geom"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "geom" (
+    kind = "component"
+)
+{
+    def Mesh "mesh"
+    {
+        float3[] extent = [(-0.15301201, -0.10783012, 0), (0.15301201, 0.10783012, 0)]
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token orientation = "leftHanded"
+        point3f[] points = [(-0.15301201, -0.10783012, 0), (-0.15301201, 0.10783012, 0), (0.15301201, 0.10783012, 0), (0.15301201, -0.10783012, 0)] (
+            interpolation = "vertex"
+        )
+        int[] primvars:name:indices = None
+        texCoord2f[] primvars:st = [(0, 0.14697276), (0, 0.8530272), (1, 0.8530271), (1, 0.14697267)] (
+            interpolation = "faceVarying"
+        )
+        int[] primvars:st:indices = None
+        uniform token subdivisionScheme = "none"
+    }
+}
