@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    defaultPrim = "look"
+)
+
+def "look" (
+    references = @./base.usda@</_base>
+)
+{
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.031464, 0.031494, 0.032196)
+        float inputs:roughness = 1
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # N5
+        color3f inputs:base_color = (0.031464, 0.031494, 0.032196)
+        # Roughnes:matte
+        float inputs:specular_roughness = 1
+    }
+}

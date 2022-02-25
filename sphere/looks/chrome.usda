@@ -1,0 +1,52 @@
+#usda 1.0
+(
+    defaultPrim = "look"
+)
+
+def "look" (
+    references = @./base.usda@</_base>
+)
+{
+    # Chrome Material
+
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.38, 0.38, 0.38)
+        float inputs:roughness = 0.098
+        float inputs:metallic = 1
+        float inputs:ior = 1.52
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # Base
+        color3f inputs:base_color.connect = </look/arTexBaseColor.outputs:out>
+
+        # Specular
+        float inputs:specular_roughness.connect = </look/arTexRoughness.outputs:out:r>
+        float inputs:specular_IOR = 1.52
+        float inputs:metalness = 1
+
+        # Coat
+        float inputs:coat = 1
+        float inputs:coat_roughness = 0
+    }
+
+    def Shader "arTexBaseColor"
+    {
+        uniform token info:id = "image"
+        string inputs:color_space = "ACES - ACEScg"
+        asset inputs:filename = @../textures/chrome.basecolor.ACES - ACEScg.2k.exr@
+        token outputs:out
+    }
+
+    def Shader "arTexRoughness"
+    {
+        uniform token info:id = "image"
+        string inputs:color_space = "ACES - ACEScg"
+        asset inputs:filename = @../textures/chrome.roughness.ACES - ACEScg.2k.exr@
+        token outputs:out
+    }
+}

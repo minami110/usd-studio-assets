@@ -1,0 +1,68 @@
+#usda 1.0
+(
+    defaultPrim = "sphere"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "sphere" (
+    kind = "component"
+
+    # Define variants
+    prepend variantSets = ["model", "material"]
+    variants = {
+        string model = "16col"
+        string material = "gsN5"
+    }
+)
+{
+    def Scope "looks"
+    {
+        # Grayscale Colors
+        ## N9.5
+        def "gsN95" (
+            append payload = @./looks/grayscale.n95.usda@
+        ) { }
+
+        ## N5
+        def "gsN5" (
+            append payload = @./looks/grayscale.n5.usda@
+        ) { }
+
+        ## N2
+        def "gsN2" (
+            append payload = @./looks/grayscale.n2.usda@
+        ) { }
+
+        # Metals
+        def "chrome" (
+            append payload = @./looks/chrome.usda@
+        ) { }
+    }
+
+    variantSet "model" = {
+        "16col" (
+            kind = "component"
+            append payload = @./geo/sphere.16col.usda@
+        ) { }
+        "32col" (
+            kind = "component"
+            append payload = @./geo/sphere.32col.usda@
+        ) { }
+    }
+
+    variantSet "material" = {
+        "gsN95" {
+            rel material:binding = </sphere/looks/gsN95>
+        }
+        "gsN5" {
+            rel material:binding = </sphere/looks/gsN5>
+        }
+        "gsN2" {
+            rel material:binding = </sphere/looks/gsN2>
+        }
+        "chrome" {
+            rel material:binding = </sphere/looks/chrome>
+        }
+    }
+}
