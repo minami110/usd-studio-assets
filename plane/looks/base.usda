@@ -52,7 +52,6 @@ class Material "_base"
     {
         uniform token info:id = "standard_surface"
         color3f inputs:base_color.connect = </_base/arTexBaseColor.outputs:out>
-        float inputs:base = 1
         float inputs:specular = 0
         token outputs:arnold:surface
     }
@@ -60,9 +59,6 @@ class Material "_base"
     def Shader "arTexBaseColor"
     {
         uniform token info:id = "image"
-        string inputs:color_space = "ACES - ACEScg"
-        asset inputs:filename = @@
-        color4f inputs:missing_texture_color = (1, 0, 0.5, 1)
         token outputs:out
     }
 }

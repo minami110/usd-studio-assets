@@ -29,7 +29,6 @@ class Material "_material_base"
     {
         uniform token info:id = "UsdUVTexture"
         float4 inputs:fallback = (1, 0, 0.5, 1)
-        asset inputs:file = @../textures/ColorChecker2005_diffuse_acescg.exr@
         float2 inputs:st.connect = </_material_base/usdSt.outputs:result>
         token inputs:sourceColorSpace = "ACES - ACEScg"
         token inputs:wrapS = "repeat"
@@ -52,7 +51,6 @@ class Material "_material_base"
     {
         uniform token info:id = "standard_surface"
         color3f inputs:base_color.connect = </_material_base/arTexBaseColor.outputs:out>
-        float inputs:base = 1
         float inputs:specular = 0
         token outputs:arnold:surface
     }
@@ -60,9 +58,6 @@ class Material "_material_base"
     def Shader "arTexBaseColor"
     {
         uniform token info:id = "image"
-        string inputs:color_space = "ACES - ACEScg"
-        asset inputs:filename = @../textures/ColorChecker2005_diffuse_acescg.exr@
-        color4f inputs:missing_texture_color = (1, 0, 0.5, 1)
         token outputs:out
     }
 }
