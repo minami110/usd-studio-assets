@@ -17,9 +17,9 @@ def "look" (
     # Override Arnold Standard Surface
     over "arStandardSurface"
     {
-        # N5
+        # Color Checker 24 N2 (Black)
+        # colorSpace: ACES - ACEScg
         color3f inputs:base_color = (0.031464, 0.031494, 0.032196)
-        # Roughnes:matte
         float inputs:specular_roughness = 1
     }
 }

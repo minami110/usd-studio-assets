@@ -52,13 +52,13 @@ def Xform "sphere" (
     }
 
     variantSet "material" = {
-        "gsN95" {
+        "gsN95_white" {
             rel material:binding = </sphere/looks/gsN95>
         }
         "gsN5" {
             rel material:binding = </sphere/looks/gsN5>
         }
-        "gsN2" {
+        "gsN2_black" {
             rel material:binding = </sphere/looks/gsN2>
         }
         "chrome" {

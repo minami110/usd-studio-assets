@@ -7,8 +7,6 @@ def "look" (
     references = @./base.usda@</_base>
 )
 {
-    # Color: N 9.5 (White)
-
     # Override USD Preview Surface
     over "usdPreviewSurface"
     {
@@ -19,9 +17,9 @@ def "look" (
     # Override Arnold Standard Surface
     over "arStandardSurface"
     {
-        # N5
+        # Color Checker 19 N9.5 (White)
+        # colorSpace: ACES - ACEScg
         color3f inputs:base_color = (0.878906, 0.883789, 0.841309)
-        # Roughnes:matte
         float inputs:specular_roughness = 1
     }
 }
