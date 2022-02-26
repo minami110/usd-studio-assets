@@ -10,7 +10,7 @@ def "look" (
     # Override USD Preview Surface
     over "usdTexDiffuse"
     {
-        asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.pn@
+        asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.exr@
     }
 
     # Override Arnold Standard Surface
