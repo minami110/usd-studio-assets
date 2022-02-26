@@ -37,7 +37,6 @@ def "look" (
     def Shader "arTexBaseColor"
     {
         uniform token info:id = "image"
-        string inputs:color_space = "ACES - ACEScg"
         asset inputs:filename = @../textures/chrome.basecolor.ACES - ACEScg.2k.exr@
         token outputs:out
     }
@@ -45,7 +44,6 @@ def "look" (
     def Shader "arTexRoughness"
     {
         uniform token info:id = "image"
-        string inputs:color_space = "ACES - ACEScg"
         asset inputs:filename = @../textures/chrome.roughness.ACES - ACEScg.2k.exr@
         token outputs:out
     }
