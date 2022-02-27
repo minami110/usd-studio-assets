@@ -53,6 +53,12 @@ def Xform "sphere" (
         def "concrete_smoothed_cast" (
             append payload = @../looks/concrete_smoothed_cast.usda@
         ) { }
+
+        # Woods
+        ## broken_floor_boards
+        def "broken_floor_boards" (
+            append payload = @../looks/broken_floor_boards.usda@
+        ) { }
     }
 
     variantSet "model" = {
@@ -87,6 +93,9 @@ def Xform "sphere" (
         }
         "concrete_smoothed_cast" {
             rel material:binding = </sphere/looks/concrete_smoothed_cast>
+        }
+        "broken_floor_boards" {
+            rel material:binding = </sphere/looks/broken_floor_boards>
         }
     }
 }
