@@ -11,34 +11,35 @@ local:
         int x = pos.x;
         int y = pos.y;
         float r = 0;
-        int width = 2;
+        int width = 4;
         int size = 2048;
+        int oneBoxWidh = size / 16;
+        int sizeMinusWidth = size - width;
 
         if ( x < width || x >= (size - width) || y < width || y >= (size - width))
         {
             r = 1;
         }
 
-        if ((x >= (2048 - 128)) && (y >= (2048 - 128)))
+        if ((x >= (size - oneBoxWidh)) && (y >= (size - oneBoxWidh)))
         {
             r = 0;
         }
 
-         if (x < 128  && (y >= (2048 - 128)) && (y < 2046))
+         if (x < oneBoxWidh  && (y >= (size - oneBoxWidh)) && (y < sizeMinusWidth))
         {
             r = 0;
         }
 
-         if (y < 128  && (x >= (2048 - 128)) && (x < 2046))
+         if (y < oneBoxWidh  && (x >= (size - oneBoxWidh)) && (x < sizeMinusWidth))
         {
             r = 0;
         }
 
-        if ( (x >= (2046)) && (y >= (2046)))
+        if ( (x >= (sizeMinusWidth)) && (y >= (sizeMinusWidth)))
         {
             r = 1;
         }
-
 
         dst () = r;
     }

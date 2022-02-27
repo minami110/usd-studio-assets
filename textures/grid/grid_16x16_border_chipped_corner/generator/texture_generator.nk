@@ -1,4 +1,5 @@
 #! C:/Program Files/Nuke13.1v1/nuke-13.1.1.dll -nx
+#write_info Write1 file:"./basecolor.exr" format:"2048 2048 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 480" fps:"0" colorspace:"default (scene_linear)" datatype:"16 bit half" transfer:"unknown" views:"main" colorManagement:"OCIO"
 version 13.1 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
@@ -12,7 +13,6 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             <splitter orientation="2">
                 <split size="784"/>
                 <dock id="" activePageId="Viewer.1">
-                    <page id="Viewer.2"/>
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="552"/>
@@ -34,6 +34,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 Root {
  inputs 0
  name "C:/Users/minami/Desktop/New folder/usd-studio-assets/textures/grid/grid_16x16_border_chipped_corner/generator/texture_generator.nk"
+ project_directory "\[python \{nuke.script_directory()\}]"
  frame 219
  last_frame 480
  format "2048 2048 0 0 2048 2048 1 square_2K"
@@ -53,6 +54,14 @@ Root {
 Constant {
  inputs 0
  channels rgb
+ color {0.5869140625 0.5913085938 0.5854492188 0}
+ name N8_020
+ xpos 102
+ ypos -71
+}
+Constant {
+ inputs 0
+ channels rgb
  name Constant1
  xpos -370
  ypos -153
@@ -62,13 +71,13 @@ Dot {
  xpos -336
  ypos -54
 }
-set Na1b8c400 [stack 0]
+set Ndcfdd400 [stack 0]
 BlinkScript {
  kernelSourceFile gridborder.rpp
- recompileCount 37
+ recompileCount 40
  ProgramGroup 1
- KernelDescription "2 \"GridBorder\" iterate pixelWise 6a09c11d2913c9cde34356ea75da7bb86cbcfc7925054ddc339a68d844d0322b 2 \"src\" Read Point \"dst\" Write Point 0 0 0"
- kernelSource "kernel GridBorder : ImageComputationKernel<ePixelWise> \{\n\n    // Input image\n    Image<eRead, eAccessPoint, eEdgeClamped> src;\n    // Output image\n    Image<eWrite, eAccessPoint> dst;\n\nlocal:\n    void process(int2 pos) \{\n\n        int x = pos.x;\n        int y = pos.y;\n        float r = 0;\n        int width = 2;\n        int size = 2048;\n\n        if ( x < width || x >= (size - width) || y < width || y >= (size - width))\n        \{\n            r = 1;\n        \}\n\n        if ((x >= (2048 - 128)) && (y >= (2048 - 128)))\n        \{\n            r = 0;\n        \}\n\n         if (x < 128  && (y >= (2048 - 128)) && (y < 2046))\n        \{\n            r = 0;\n        \}\n\n         if (y < 128  && (x >= (2048 - 128)) && (x < 2046))\n        \{\n            r = 0;\n        \}\n\n        if ( (x >= (2046)) && (y >= (2046)))\n        \{\n            r = 1;\n        \}\n\n\n        dst () = r;\n    \}\n\};"
+ KernelDescription "2 \"GridBorder\" iterate pixelWise deef2ae2f54ac9731473c2ce383e6a3b5cf68ace82575c8aecd501532242686a 2 \"src\" Read Point \"dst\" Write Point 0 0 0"
+ kernelSource "kernel GridBorder : ImageComputationKernel<ePixelWise> \{\n\n    // Input image\n    Image<eRead, eAccessPoint, eEdgeClamped> src;\n    // Output image\n    Image<eWrite, eAccessPoint> dst;\n\nlocal:\n    void process(int2 pos) \{\n\n        int x = pos.x;\n        int y = pos.y;\n        float r = 0;\n        int width = 4;\n        int size = 2048;\n        int oneBoxWidh = size / 16;\n        int sizeMinusWidth = size - width;\n\n        if ( x < width || x >= (size - width) || y < width || y >= (size - width))\n        \{\n            r = 1;\n        \}\n\n        if ((x >= (size - oneBoxWidh)) && (y >= (size - oneBoxWidh)))\n        \{\n            r = 0;\n        \}\n\n         if (x < oneBoxWidh  && (y >= (size - oneBoxWidh)) && (y < sizeMinusWidth))\n        \{\n            r = 0;\n        \}\n\n         if (y < oneBoxWidh  && (x >= (size - oneBoxWidh)) && (x < sizeMinusWidth))\n        \{\n            r = 0;\n        \}\n\n        if ( (x >= (sizeMinusWidth)) && (y >= (sizeMinusWidth)))\n        \{\n            r = 1;\n        \}\n\n        dst () = r;\n    \}\n\};"
  rebuild ""
  rebuild_finalise ""
  name BlinkScript2
@@ -91,10 +100,10 @@ Constant {
  xpos 70
  ypos 131
 }
-push $Na1b8c400
+push $Ndcfdd400
 BlinkScript {
  kernelSourceFile grid.rpp
- recompileCount 19
+ recompileCount 20
  ProgramGroup 1
  KernelDescription "2 \"Normalize\" iterate pixelWise 6c73b2a23282aed92600ca7419b9efb5ddb17decba45413c1a69f5666fe2be5d 2 \"src\" Read Point \"dst\" Write Point 0 0 0"
  kernelSource "kernel Normalize : ImageComputationKernel<ePixelWise> \{\n\n    // Input image\n    Image<eRead, eAccessPoint, eEdgeClamped> src;\n    // Output image\n    Image<eWrite, eAccessPoint> dst;\n\nlocal:\n    void process(int2 pos) \{\n        int w = 2048;\n        int dw = w / 8;\n        float r = (float)(pos.x % dw) / (float)dw;\n        float ry = 0.5;\n        if (r < 0.5)\n        \{\n            ry = (float)(pos.y % dw) / (float)dw;\n            if (ry < 0.5)\n            \{\n                ry = 0.0;\n            \}\n            else\n            \{\n                ry = 1.0;\n            \}\n        \}\n        else\n        \{\n            ry = (float)(pos.y % dw) / (float)dw;\n            if (ry < 0.5)\n            \{\n                ry = 1.0;\n            \}\n            else\n            \{\n                ry = 0.0;\n            \}\n        \}\n        \n        dst () = ry;\n    \}\n\};"
@@ -142,6 +151,7 @@ Merge2 {
  xpos -40
  ypos 159
 }
+set Ndcf8ac00 [stack 0]
 Viewer {
  frame_range 1-480
  viewerProcess "sRGB (ACES)"
@@ -149,11 +159,13 @@ Viewer {
  xpos -40
  ypos 255
 }
-Constant {
- inputs 0
- channels rgb
- color {0.5869140625 0.5913085938 0.5854492188 0}
- name N8_020
- xpos 102
- ypos -71
+push $Ndcf8ac00
+Write {
+ file ./basecolor.exr
+ file_type exr
+ first_part rgba
+ version 1
+ name Write1
+ xpos 111
+ ypos 239
 }
