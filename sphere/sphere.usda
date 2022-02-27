@@ -55,9 +55,11 @@ def Xform "sphere" (
         ) { }
 
         # Woods
-        ## broken_floor_boards
         def "broken_floor_boards" (
             append payload = @../looks/broken_floor_boards.usda@
+        ) { }
+        def "old_cabin_dusty_oak_flooring" (
+            append payload = @../looks/old_cabin_dusty_oak_flooring.usda@
         ) { }
     }
 
@@ -94,8 +96,13 @@ def Xform "sphere" (
         "concrete_smoothed_cast" {
             rel material:binding = </sphere/looks/concrete_smoothed_cast>
         }
+
+        # Woods
         "broken_floor_boards" {
             rel material:binding = </sphere/looks/broken_floor_boards>
+        }
+        "old_cabin_dusty_oak_flooring" {
+            rel material:binding = </sphere/looks/old_cabin_dusty_oak_flooring>
         }
     }
 }

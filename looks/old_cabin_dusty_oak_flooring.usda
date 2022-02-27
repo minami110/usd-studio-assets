@@ -1,0 +1,50 @@
+#usda 1.0
+(
+    defaultPrim = "this"
+)
+
+def "this" (
+    references = @./_base.usda@</_base>
+)
+{
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.467346, 0.364677, 0.271412)
+        float inputs:roughness = 0.510356
+    }
+
+    # Arnold displacement map connection
+    token outputs:arnold:displacement.connect = </this/arTexDisplacement.outputs:out>
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # Base
+        color3f inputs:base_color.connect = </this/arTexBaseColor.outputs:out>
+
+        # Specular
+        float inputs:specular_roughness.connect = </this/arTexRoughness.outputs:out:r>
+    }
+
+    def Shader "arTexBaseColor"
+    {
+        uniform token info:id = "image"
+        token outputs:out
+        asset inputs:filename = @../textures/wood/old_cabin_dusty_oak_flooring.basecolor.ACES - ACEScg.tiled.16bit.2k.exr@
+    }
+
+    def Shader "arTexRoughness"
+    {
+        token outputs:out
+        uniform token info:id = "image"
+        asset inputs:filename = @../textures/wood/old_cabin_dusty_oak_flooring.roughness.ACES - ACEScg.tiled.16bit.2k.exr@
+    }
+
+    def Shader "arTexDisplacement"
+    {
+        uniform token info:id = "image"
+        token outputs:out
+        asset inputs:filename = @../textures/wood/old_cabin_dusty_oak_flooring.displacement.ACES - ACEScg.tiled.16bit.2k.exr@
+    }
+}
