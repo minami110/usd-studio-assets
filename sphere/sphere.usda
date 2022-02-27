@@ -41,7 +41,7 @@ def Xform "sphere" (
         ) { }
         ## Polished silver
         def "silver_polished" (
-            append payload = @./looks/silver_polished.usda@
+            append payload = @../looks/silver_polished.usda@
         ) { }
         ## Swirled brushed iron
         def "steel_swirled_brushed" (
