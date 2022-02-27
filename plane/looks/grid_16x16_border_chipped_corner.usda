@@ -1,21 +1,39 @@
 #usda 1.0
 (
-    defaultPrim = "look"
+    defaultPrim = "this"
 )
 
-def "look" (
-    references = @./base.usda@</_base>
+def "this" (
+    references = @./_base.usda@</_base>
 )
 {
     # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        float inputs:roughness = 0.85
+    }
+
     over "usdTexDiffuse"
     {
-        asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.exr@
+        asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@
     }
 
     # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # Specular
+        float inputs:specular_roughness.connect = </this/arTexRoughness.outputs:out:r>
+    }
+
     over "arTexBaseColor"
     {
-        asset inputs:filename = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.BaseColor.ACES - ACEScg.4k.exr@
+        asset inputs:filename = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@
+    }
+
+    def Shader "arTexRoughness"
+    {
+        uniform token info:id = "image"
+        asset inputs:filename = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.roughness.tiled.ACES - ACEScg.2k.exr@
+        token outputs:out
     }
 }

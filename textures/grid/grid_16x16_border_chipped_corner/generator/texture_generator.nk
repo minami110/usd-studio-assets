@@ -1,5 +1,4 @@
 #! C:/Program Files/Nuke13.1v1/nuke-13.1.1.dll -nx
-#write_info Write1 file:"./basecolor.exr" format:"2048 2048 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 480" fps:"0" colorspace:"default (scene_linear)" datatype:"16 bit half" transfer:"unknown" views:"main" colorManagement:"OCIO"
 version 13.1 v1
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
@@ -13,6 +12,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             <splitter orientation="2">
                 <split size="784"/>
                 <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.2"/>
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="552"/>
@@ -62,6 +62,14 @@ Constant {
 Constant {
  inputs 0
  channels rgb
+ color {0.03146362305 0.03149414063 0.03219604492 0}
+ name N2_024
+ xpos 70
+ ypos 131
+}
+Constant {
+ inputs 0
+ channels rgb
  name Constant1
  xpos -370
  ypos -153
@@ -71,7 +79,7 @@ Dot {
  xpos -336
  ypos -54
 }
-set Ndcfdd400 [stack 0]
+set N5c46d000 [stack 0]
 BlinkScript {
  kernelSourceFile gridborder.rpp
  recompileCount 40
@@ -92,15 +100,16 @@ Shuffle2 {
  xpos -370
  ypos 159
 }
+set N5c46c800 [stack 0]
 Constant {
  inputs 0
  channels rgb
- color {0.03146362305 0.03149414063 0.03219604492 0}
- name N2_024
- xpos 70
- ypos 131
+ color {0.08685302734 0.08868408203 0.09204101563 0}
+ name N35_023
+ xpos 189
+ ypos 111
 }
-push $Ndcfdd400
+push $N5c46d000
 BlinkScript {
  kernelSourceFile grid.rpp
  recompileCount 20
@@ -121,6 +130,7 @@ Shuffle2 {
  xpos -260
  ypos 63
 }
+set N5c41b800 [stack 0]
 Constant {
  inputs 0
  channels rgb
@@ -151,7 +161,7 @@ Merge2 {
  xpos -40
  ypos 159
 }
-set Ndcf8ac00 [stack 0]
+set N5c41a800 [stack 0]
 Viewer {
  frame_range 1-480
  viewerProcess "sRGB (ACES)"
@@ -159,13 +169,80 @@ Viewer {
  xpos -40
  ypos 255
 }
-push $Ndcf8ac00
+push $N5c46c800
+Constant {
+ inputs 0
+ channels rgb
+ color 1
+ name Constant4
+ xpos 548
+ ypos 183
+}
+push $N5c41b800
+Constant {
+ inputs 0
+ channels rgb
+ color 0.8
+ name Constant2
+ xpos 558
+ ypos 15
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 0.9
+ name Constant3
+ xpos 400
+ ypos -33
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge1
+ xpos 392
+ ypos 111
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge4
+ xpos 392
+ ypos 207
+}
+set N1e1ee800 [stack 0]
+Viewer {
+ frame_range 1-480
+ viewerProcess "sRGB (ACES)"
+ name Viewer2
+ xpos 397
+ ypos 315
+}
+push $N1e1ee800
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+ name Shuffle3
+ xpos 482
+ ypos 279
+}
+Write {
+ channels alpha
+ file ./roughness.exr
+ file_type exr
+ first_part rgba
+ version 3
+ name Write2
+ xpos 585
+ ypos 350
+}
+push $N5c41a800
 Write {
  file ./basecolor.exr
  file_type exr
  first_part rgba
- version 1
+ version 3
  name Write1
- xpos 111
- ypos 239
+ xpos 113
+ ypos 243
 }

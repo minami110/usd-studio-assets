@@ -52,7 +52,6 @@ class Material "_base"
     {
         uniform token info:id = "standard_surface"
         color3f inputs:base_color.connect = </_base/arTexBaseColor.outputs:out>
-        float inputs:specular = 0
         token outputs:arnold:surface
     }
 

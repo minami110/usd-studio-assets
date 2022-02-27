@@ -10,12 +10,13 @@ local:
 
         int x = pos.x;
         int y = pos.y;
-        float r = 0;
         int width = 4;
         int size = 2048;
         int oneBoxWidh = size / 16;
         int sizeMinusWidth = size - width;
 
+        float r = 0;
+        
         if ( x < width || x >= (size - width) || y < width || y >= (size - width))
         {
             r = 1;
