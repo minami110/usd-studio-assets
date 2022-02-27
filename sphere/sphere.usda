@@ -35,8 +35,23 @@ def Xform "sphere" (
         ) { }
 
         # Metals
+        ## Chrome (Mirro ball)
         def "chrome" (
-            append payload = @./looks/chrome.usda@
+            append payload = @../looks/chrome.usda@
+        ) { }
+        ## Polished silver
+        def "silver_polished" (
+            append payload = @./looks/silver_polished.usda@
+        ) { }
+        ## Swirled brushed iron
+        def "steel_swirled_brushed" (
+            append payload = @./looks/steel_swirled_brushed.usda@
+        ) { }
+
+        # Concretes
+        ## concrete_smoothed_cast
+        def "concrete_smoothed_cast" (
+            append payload = @../looks/concrete_smoothed_cast.usda@
         ) { }
     }
 
@@ -63,6 +78,15 @@ def Xform "sphere" (
         }
         "chrome" {
             rel material:binding = </sphere/looks/chrome>
+        }
+        "silver_polished" {
+            rel material:binding = </sphere/looks/silver_polished>
+        }
+        "steel_swirled_brushed" {
+            rel material:binding = </sphere/looks/steel_swirled_brushed>
+        }
+        "concrete_smoothed_cast" {
+            rel material:binding = </sphere/looks/concrete_smoothed_cast>
         }
     }
 }

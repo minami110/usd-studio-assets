@@ -1,0 +1,48 @@
+#usda 1.0
+(
+    defaultPrim = "this"
+)
+
+def "this" (
+    references = @./_base.usda@</_base>
+)
+{
+    # Chrome Material
+
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.3948, 0.4027, 0.398)
+        float inputs:roughness = 0.09839
+        float inputs:metallic = 1
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # Base
+        color3f inputs:base_color.connect = </this/arTexBaseColor.outputs:out>
+
+        # Specular
+        float inputs:specular_roughness.connect = </this/arTexRoughness.outputs:out:r>
+        float inputs:metalness = 1
+
+        # Coat
+        float inputs:coat = 1
+        float inputs:coat_roughness.connect = </this/arTexRoughness.outputs:out:r>
+    }
+
+    def Shader "arTexBaseColor"
+    {
+        uniform token info:id = "image"
+        asset inputs:filename = @../textures/metal/chrome.basecolor.tiled.ACES - ACEScg.16bit.2k.exr@
+        token outputs:out
+    }
+
+    def Shader "arTexRoughness"
+    {
+        uniform token info:id = "image"
+        asset inputs:filename = @../textures/metal/chrome.roughness.tiled.ACES - ACEScg.16bit.2k.exr@
+        token outputs:out
+    }
+}
