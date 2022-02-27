@@ -43,9 +43,9 @@ def Xform "sphere" (
         def "silver_polished" (
             append payload = @../looks/silver_polished.usda@
         ) { }
-        ## Swirled brushed iron
+        ## Swirled brushed steel
         def "steel_swirled_brushed" (
-            append payload = @./looks/steel_swirled_brushed.usda@
+            append payload = @../looks/steel_swirled_brushed.usda@
         ) { }
 
         # Concretes
