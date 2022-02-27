@@ -10,12 +10,12 @@ def "classic_2014" (
     # Override USD Preview Surface
     over "usdTexDiffuse"
     {
-        asset inputs:file = @../textures/ColorChecker2014_diffuse_acescg.exr@
+        asset inputs:file = @../textures/ColorChecker2014.tiled.basecolor.ACES - ACEScg.16bit.2k.exr@
     }
 
     # Override Arnold Standard Surface
     over "arTexBaseColor"
     {
-        asset inputs:filename = @../textures/ColorChecker2014_diffuse_acescg.exr@
+        asset inputs:filename = @../textures/ColorChecker2014.tiled.basecolor.ACES - ACEScg.16bit.2k.exr@
     }
 }
