@@ -10,7 +10,7 @@ class Material "_base"
     token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
 
     # Arnold Connections
-    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:arnold:surface>
+    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:out>
 
     # ========================
     # USD Shaders
@@ -29,7 +29,7 @@ class Material "_base"
     def Shader "arStandardSurface"
     {
         uniform token info:id = "standard_surface"
-        token outputs:arnold:surface
+        token outputs:out
     }
 
 }

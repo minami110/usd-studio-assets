@@ -10,7 +10,7 @@ class Material "_base"
     token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
 
     # Arnold Connections
-    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:arnold:surface>
+    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:out>
 
     # ========================
     # USD Shaders
@@ -18,23 +18,22 @@ class Material "_base"
     def Shader "usdPreviewSurface"
     {
         uniform token info:id = "UsdPreviewSurface"
+        token outputs:displacement
+        token outputs:surface
         color3f inputs:diffuseColor.connect = </_base/usdTexDiffuse.outputs:rgb>
         float inputs:ior = 1
         float inputs:roughness = 1
-        token outputs:displacement
-        token outputs:surface
     }
 
     def Shader "usdTexDiffuse"
     {
         uniform token info:id = "UsdUVTexture"
+        vector3f outputs:rgb
         float4 inputs:fallback = (1, 0, 0.5, 1)
-        asset inputs:file = @@
         float2 inputs:st.connect = </_base/usdSt.outputs:result>
         token inputs:sourceColorSpace = "ACES - ACEScg"
         token inputs:wrapS = "repeat"
         token inputs:wrapT = "repeat"
-        vector3f outputs:rgb
     }
 
     def Shader "usdSt"
@@ -51,8 +50,8 @@ class Material "_base"
     def Shader "arStandardSurface"
     {
         uniform token info:id = "standard_surface"
+        token outputs:out
         color3f inputs:base_color.connect = </_base/arTexBaseColor.outputs:out>
-        token outputs:arnold:surface
     }
 
     def Shader "arTexBaseColor"
