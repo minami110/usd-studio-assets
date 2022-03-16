@@ -1,0 +1,39 @@
+#usda 1.0
+(
+    defaultPrim = "this"
+)
+
+def "this" (
+    references = @./grid_16x16_border_chipped_corner.usda@</this>
+)
+{
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # BaseColor
+        color3f inputs:base_color.connect = </this/arTriplanerBaseColor.outputs:out>
+        # Specular
+        float inputs:specular_roughness.connect = </this/arTriplanerRoughness.outputs:out:r>
+    }
+
+    # Triplaner for BaseColor Image
+    def Shader "arTriplanerBaseColor"
+    {
+        uniform token info:id = "triplanar"
+        # world-space
+        string inputs:coord_space = "0"
+        color3f inputs:input.connect = </this/arTexBaseColor.outputs:out>
+        vector3f inputs:offset = (0.5, 0.5, 0.5)
+        color3f outputs:out
+    }
+
+    def Shader "arTriplanerRoughness"
+    {
+        uniform token info:id = "triplanar"
+        # world-space
+        string inputs:coord_space = "0"
+        color3f inputs:input.connect = </this/arTexRoughness.outputs:out>
+        vector3f inputs:offset = (0.5, 0.5, 0.5)
+        float outputs:out:r
+    }
+}

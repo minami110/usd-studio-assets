@@ -21,6 +21,9 @@ def Xform "plane" (
         def "grid_16x16_border_chipped_corner" (
             append payload = @./looks/grid_16x16_border_chipped_corner.usda@
         ) { }
+        def "grid16x16_worldspace" (
+            append payload = @./looks/grid_16x16_border_chipped_corner_worldcoodrinate.usda@
+        ) { }
     }
 
     variantSet "model" = {
@@ -41,6 +44,9 @@ def Xform "plane" (
     variantSet "material" = {
         "grid_16x16_border_chipped_corner" {
             rel material:binding = </plane/looks/grid_16x16_border_chipped_corner>
+        }
+        "grid16x16_worldspace" {
+            rel material:binding = </plane/looks/grid16x16_worldspace>
         }
     }
 }

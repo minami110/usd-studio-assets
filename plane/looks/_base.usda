@@ -57,7 +57,7 @@ class Material "_base"
     def Shader "arTexBaseColor"
     {
         uniform token info:id = "image"
-        token outputs:out
+        color4f outputs:out
     }
 }
 
