@@ -1,0 +1,12 @@
+shader saturate
+    [[
+        string help  = "Clamp(value, 0, 1)",
+        string label = "Saturate"
+    ]]
+(  
+    vector In = 0,
+    output vector Out  = 0,
+)
+{
+    Out = clamp(In, 0, 1);
+}
