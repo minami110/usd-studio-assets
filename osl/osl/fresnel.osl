@@ -1,0 +1,35 @@
+// Fresnel effects shader
+
+float saturate(float in)
+{
+    return clamp(in, 0, 1);
+}
+
+shader fresnel
+    [[
+        string help  = "basic fresnel effect",
+        string label = "Fresnel"
+    ]]
+(  
+    // Effect power (default: 2)
+    float Power = 2
+    [[
+        string widget = "number",
+        int slider = 1,
+        float min = 0,
+        float slidermin = 0,
+        float slidermax = 10
+    ]],
+
+    // Object normals (default to use globals "N")
+    vector Normal = N,
+
+    // Ray direction (default to use globals "I")
+    vector Dir = I,
+
+    // Outputs
+    output float Out  = 0,
+)
+{
+    Out = pow(saturate(1 + dot(normalize(Normal), normalize(Dir))), Power);
+}
