@@ -1,0 +1,23 @@
+// position.osl
+
+shader position
+(  
+    // Inputs
+    string type = "world"
+        [[
+            string widget = "mapper",
+            string options =
+                "Object:object"
+                "|Shader:shader"
+                "|World:world"
+                "|Camera:camera"
+                "|Screen:screen"
+                "|Raster:raster"
+                "|NDC:NDC"
+        ]],
+    // Outputs
+    output point position  = 0,
+)
+{
+    position = transform(type, P);
+}

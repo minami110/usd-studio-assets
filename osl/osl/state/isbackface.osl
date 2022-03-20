@@ -1,0 +1,16 @@
+// isbackface.osl
+
+shader isbackface [[ string help = "Returns 1 if the surface is beign sanpled as if seen from the back of the surface." ]]
+(  
+    output int out  = 0,
+)
+{
+    if (backfacing())
+    {
+        out = 1;
+    }
+    else
+    {
+        out = 0;
+    }
+}

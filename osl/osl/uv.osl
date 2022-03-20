@@ -1,0 +1,8 @@
+shader uv
+(  
+    // Outputs
+    output point uv  = 0,
+)
+{
+    uv = point(u, v, 0);
+}
