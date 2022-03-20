@@ -1,0 +1,10 @@
+// floor.osl
+
+shader floor [[ string help  = "returns the largest integer less than or equal to x" ]]
+(  
+    color in = 0,
+    output color out  = 0,
+)
+{
+    out = floor(in);
+}

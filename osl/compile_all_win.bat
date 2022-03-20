@@ -14,9 +14,9 @@ cd /d "%~dp0"
 if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
 
 @REM search all .osl filse
-for %%f in (%IN_DIR%/*.osl) do (
+for /r %IN_DIR% %%f in (*.osl) do (
     @REM compile to .oso
-    "%OSLC%" -v -o "%OUT_DIR%/%%~nf.oso" "%IN_DIR%/%%~nxf"
+    "%OSLC%" -v -o "%OUT_DIR%/%%~nf.oso" "%%f"
 )
 
 pause

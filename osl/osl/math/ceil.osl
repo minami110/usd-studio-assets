@@ -1,0 +1,10 @@
+// ceil.osl
+
+shader ceil [[ string help  = "returns the smallest integer less than or equal to x" ]]
+(  
+    color in = 0,
+    output color out  = 0,
+)
+{
+    out = ceil(in);
+}

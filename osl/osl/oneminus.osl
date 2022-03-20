@@ -4,9 +4,9 @@ shader oneminus
         string label = "One Minus"
     ]]
 (  
-    vector In = 1,
-    output vector Out  = 0,
+    color in = 1,
+    output color out  = 0,
 )
 {
-    Out = 1 - In;
+    out = 1 - in;
 }

@@ -1,0 +1,11 @@
+// distance.osl
+
+shader distance [[ string help  = "Returns the distance between two points" ]]
+(  
+    point p0 = 0,
+    point p1 = 0,
+    output float out  = 0,
+)
+{
+    out = distance(p0, p1);
+}
