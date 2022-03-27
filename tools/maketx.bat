@@ -7,8 +7,8 @@
 
 @REM ## Input Image Options
 @SET "IN_COLORSPACE=ACES - ACEScg"
-@SET "IN_DIR=../textures/wood"
-@SET "IN_FILE=old_cabin_dusty_oak_flooring.roughness"
+@SET "IN_DIR=."
+@SET "IN_FILE=poplar_wood_parquet_touraine.basecolor.ACES - ACEScg.2k"
 @SET "IN=%IN_DIR%/%IN_FILE%.exr"
 
 @REM ## Output Image Options

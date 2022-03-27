@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    defaultPrim = "Ro"
+)
+
+def Material "Ro"
+(
+    references = @./_stateVectorBase.usda@</_stateVectorBase>
+)
+{
+    # Arnold Ro (Ray Origin) AOV Shader
+    
+    over Shader "arAovWriteVector"
+    {
+        string inputs:aov_name = "Ro"
+    }
+
+    over Shader "arStateVector"
+    {
+        # Get Ray Origin via state_vector shader
+        # https://docs.arnoldrenderer.com/display/A5AFMUG/Shading+State
+
+        string inputs:variable = "0" # 0 is Ro
+    }
+}

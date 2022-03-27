@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    defaultPrim = "N"
+)
+
+def Material "N"
+(
+    references = @./_stateVectorBase.usda@</_stateVectorBase>
+)
+{
+    # Arnold N (Shading Normal) AOV Shader
+    
+    over Shader "arAovWriteVector"
+    {
+        string inputs:aov_name = "N"
+    }
+
+    over Shader "arStateVector"
+    {
+        # Get Shading Normal via state_vector shader
+        # https://docs.arnoldrenderer.com/display/A5AFMUG/Shading+State
+
+        string inputs:variable = "6" # 5 is N
+    }
+}

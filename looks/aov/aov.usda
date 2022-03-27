@@ -1,0 +1,23 @@
+#usda 1.0
+(
+    defaultPrim = "aov"
+)
+
+def Scope "aov"
+{
+    # state vector AOVs
+    def "Ro" (
+        append payload = @./Ro.usda@
+    ) {}
+    def "Rd" (
+        append payload = @./Rd.usda@
+    ) {}
+    def "N" (
+        append payload = @./N.usda@
+    ) {}
+
+    # Utility AOVs
+    def "cryptomatte" (
+        append payload = @./cryptomatte.usda@
+    ) {}
+}

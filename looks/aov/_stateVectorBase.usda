@@ -1,0 +1,22 @@
+#usda 1.0
+
+class Material "_stateVectorBase"
+{
+    # Base AOV shader use state_vector
+
+    token outputs:arnold:aov.connect = </_stateVectorBase/arAovWriteVector.outputs:out>
+    
+    def Shader "arAovWriteVector"
+    {
+        uniform token info:id = "aov_write_vector"
+        token outputs:out
+        vector3f inputs:aov_input.connect = </_stateVectorBase/arStateVector.outputs:out>
+    }
+
+    def Shader "arStateVector"
+    {
+        # https://docs.arnoldrenderer.com/display/A5AFMUG/Shading+State
+        uniform token info:id = "state_vector"
+        vector3f outputs:out
+    }
+}

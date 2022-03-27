@@ -1,0 +1,15 @@
+#usda 1.0
+(
+    defaultPrim = "cryptomatte"
+)
+
+def Material "cryptomatte"
+{
+    # Arnold Cryptomatte AOV Shader
+    token outputs:arnold:aov.connect = </cryptomatte/arCryptomatte.outputs:out>
+    def Shader "arCryptomatte"
+    {
+        token outputs:out
+        uniform token info:id = "cryptomatte"
+    }
+}
