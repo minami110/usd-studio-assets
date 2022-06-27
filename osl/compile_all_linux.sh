@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set your oslc path
-export "OSLC=${HOME}/ktoa/ktoa-4.1.1.0-kat5.0-linux/bin/oslc"
+export "OSLC=${HOME}/.local/ktoa/ktoa-4.1.2.0-kat5.0-linux/bin/oslc"
 
 # set osl directory and compiled oso directory (May do not touch)
 export "IN_DIR=./osl"
