@@ -1,0 +1,10 @@
+// sin.osl
+
+shader sin [[ string help  = "Computes the sine of x (measured in radians)." ]]
+(  
+    color in = 0,
+    output color out  = 0,
+)
+{
+    out = sin(in);
+}

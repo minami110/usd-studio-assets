@@ -1,0 +1,10 @@
+// tan.osl
+
+shader tan [[ string help  = "Computes the tangent of x (measured in radians)." ]]
+(  
+    color in = 0,
+    output color out  = 0,
+)
+{
+    out = tan(in);
+}
