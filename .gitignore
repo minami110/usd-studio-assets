@@ -75,6 +75,9 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows
 
 
+### Houdini ###
+*bak*.hip
+
 ### Arnold ###
 # Auto generated .tx
 *.tx
