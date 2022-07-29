@@ -1,0 +1,18 @@
+#usda 1.0
+(
+    defaultPrim = "backdrop"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "backdrop" (
+    kind = "component"
+)
+{
+    def "cloth" (
+        prepend payload = @./cloth.usda@
+    ) {}
+    def "stand" (
+        prepend payload = @./stand.usda@
+    ) {}
+}

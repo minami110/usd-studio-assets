@@ -1,0 +1,74 @@
+#usda 1.0
+(
+    defaultPrim = "cloth"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "cloth" (
+    kind = "component"
+
+    # Define variants
+    prepend variantSets = ["model", "material"]
+    variants = {
+        string model = "simple"
+        string material = "gsN95_white"
+    }
+)
+{
+    def Scope "looks"
+    {
+        # N9.5 (White)
+        def "gsN95" (
+            append payload = @../looks/color_checker_colors/grayscale.N95.usda@
+        ) { }
+
+        # N5
+        def "gsN5" (
+            append payload = @../looks/color_checker_colors/grayscale.N5.usda@
+        ) { }
+
+        # N2
+        def "gsN2" (
+            append payload = @../looks/color_checker_colors/grayscale.N2.usda@
+        ) { }
+
+        # Grids (Plane looks)
+        def "grid_16x16_border_chipped_corner" (
+            append payload = @../plane/looks/grid_16x16_border_chipped_corner.usda@
+        ) { }
+
+        def "grid16x16_worldspace" (
+            append payload = @../plane/looks/grid_16x16_border_chipped_corner_worldcoodrinate.usda@
+        ) { }
+    }
+
+    variantSet "model" = {
+        "simple" (
+            kind = "component"
+            append payload = @./geo/cloth_simple.usdc@
+        ) { }
+        "cloth_a" (
+            kind = "component"
+            append payload = @./geo/cloth_a.usdc@
+        ) { }
+    }
+
+    variantSet "material" = {
+        "gsN95_white" {
+            rel material:binding = </cloth/looks/gsN95>
+        }
+        "gsN5" {
+            rel material:binding = </cloth/looks/gsN5>
+        }
+        "gsN2_black" {
+            rel material:binding = </cloth/looks/gsN2>
+        }
+        "grid_16x16_border_chipped_corner" {
+            rel material:binding = </cloth/looks/grid_16x16_border_chipped_corner>
+        }
+        "grid16x16_worldspace" {
+            rel material:binding = </cloth/looks/grid16x16_worldspace>
+        }
+    }
+}

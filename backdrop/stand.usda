@@ -1,0 +1,23 @@
+#usda 1.0
+(
+    defaultPrim = "stand"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "stand" (
+    kind = "component"
+    append payload = @./geo/stand.usdc@
+)
+{
+    def Scope "looks"
+    {
+        ## Polished silver
+        def "silver_polished" (
+            append payload = @../looks/silver_polished.usda@
+        ) { }
+    }
+
+    # Material bindings
+    rel material:binding = </stand/looks/silver_polished>
+}
