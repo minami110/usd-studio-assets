@@ -19,19 +19,19 @@ def Xform "sphere" (
     def Scope "looks"
     {
         # Grayscale Colors
-        ## N9.5
+        # N9.5 (White)
         def "gsN95" (
-            append payload = @./looks/grayscale.n95.usda@
+            append payload = @../looks/color_checker_colors/grayscale.N95.usda@
         ) { }
 
-        ## N5
+        # N5
         def "gsN5" (
-            append payload = @./looks/grayscale.n5.usda@
+            append payload = @../looks/color_checker_colors/grayscale.N5.usda@
         ) { }
 
-        ## N2
+        # N2
         def "gsN2" (
-            append payload = @./looks/grayscale.n2.usda@
+            append payload = @../looks/color_checker_colors/grayscale.N2.usda@
         ) { }
 
         # Metals
