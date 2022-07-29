@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    defaultPrim = "look"
+)
+
+def "look" (
+    references = @./base.usda@</_base>
+)
+{
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.878906, 0.883789, 0.841309)
+        float inputs:roughness = 1
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        # Color Checker 19 N9.5 (White)
+        # colorSpace: ACES - ACEScg
+        color3f inputs:base_color = (0.878906, 0.883789, 0.841309)
+        float inputs:specular_roughness = 1
+    }
+}
