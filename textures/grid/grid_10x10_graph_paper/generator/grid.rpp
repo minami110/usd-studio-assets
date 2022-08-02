@@ -1,0 +1,41 @@
+kernel Grid : ImageComputationKernel<ePixelWise> {
+
+    // Input image
+    Image<eRead, eAccessPoint, eEdgeClamped> src;
+    // Output image
+    Image<eWrite, eAccessPoint> dst;
+
+local:
+    void process(int2 pos) {
+        int w = 2048;
+        int dw = w / 5;
+        float r = (float)(pos.x % dw) / (float)dw;
+        float ry = 0.5;
+        if (r < 0.5)
+        {
+            ry = (float)(pos.y % dw) / (float)dw;
+            if (ry < 0.5)
+            {
+                ry = 0.0;
+            }
+            else
+            {
+                ry = 1.0;
+            }
+        }
+        else
+        {
+            ry = (float)(pos.y % dw) / (float)dw;
+            if (ry < 0.5)
+            {
+                ry = 1.0;
+            }
+            else
+            {
+                ry = 0.0;
+            }
+        }
+        
+        dst () = ry;
+    }
+};

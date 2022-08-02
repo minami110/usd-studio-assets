@@ -1,0 +1,39 @@
+#usda 1.0
+(
+    defaultPrim = "this"
+)
+
+def "this" (
+    references = @./_base.usda@</_base>
+)
+{
+    # -------------------------
+    # Override USD Shaders
+    # -------------------------
+    over "usdPreviewSurface"
+    {
+        float inputs:roughness = 0.85
+    }
+
+    over "usdTexDiffuse"
+    {
+        asset inputs:file = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
+    }
+
+    # -------------------------
+    # Override Arnold Shaders
+    # -------------------------
+    over "arTexBaseColor"
+    {
+        asset inputs:filename = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
+    }
+
+    # -------------------------
+    # Override Redshift Shaders
+    # -------------------------
+    over Shader "rsTexBaseColor"
+    {
+        asset inputs:tex0 = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
+        string inputs:tex0_colorSpace = "ACES - ACEScg"
+    }
+}

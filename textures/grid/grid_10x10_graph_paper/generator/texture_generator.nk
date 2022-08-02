@@ -1,0 +1,462 @@
+#! /home/minami/.local/Nuke/13.2v2/libnuke-13.2.2.so -nx
+#write_info Write1 file:"../grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr" format:"2048 2048 1" chans:":rgba.alpha:" framerange:"1 480" fps:"0" colorspace:"compositing_linear	compositing_linear (ACES - ACEScg)" datatype:"16 bit half" transfer:"unknown" views:"main" colorManagement:"OCIO"
+version 13.2 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="1472" w="2560" h="1371" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1897" stretch="1"/>
+            <splitter orientation="2">
+                <split size="780"/>
+                <dock id="" activePageId="Viewer.2" focus="true">
+                    <page id="Viewer.2"/>
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="548"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /home/minami/Desktop/limited/scene/usd-studio-assets/textures/grid/grid_10x10_graph_paper/generator/texture_generator.nk
+ project_directory "\[python \{nuke.script_directory()\}]"
+ frame 219
+ last_frame 480
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.2
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut ACES/sRGB
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 1
+ format "2050 2050 0 0 2050 2050 1 2050"
+ name Constant5
+ xpos 269
+ ypos 222
+}
+Text2 {
+ font_size_toolbar 120
+ font_width_toolbar 100
+ font_height_toolbar 100
+ baseline_toolbar -16
+ message "1 m"
+ old_message {{49 32 109}
+   }
+ box {917.5 39.5 1131.5 160.5}
+ xjustify center
+ yjustify center
+ transforms {{0 2}
+   }
+ font_size_values {{0 120 1 120 2 120 0 120 1 120 2 120}
+   }
+ font_height_values {{0 100 1 100 2 100 0 100 1 100 2 100}
+   }
+ tracking_values {{0 0 1 0 2 0 0 0 1 0 2 0}
+   }
+ baseline_values {{0 -16 1 -16 2 -16 0 0.4 1 0.4 2 0.4}
+   }
+ cursor_position 3
+ font {{ Noto Sans Math : Regular : google-noto-vf/NotoSansMath-VF.ttf : 0 }}
+ font_size 120
+ baseline_shift -16
+ center {1024 1024}
+ cursor_initialised true
+ initial_cursor_position {{1024.5 100}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 1024 0 0 1 1 0 0 0 0}
+   }
+ color {0 0 0 1}
+ color_panelDropped true
+ name Text1
+ xpos 210
+ ypos 321
+}
+Roto {
+ output rgb
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44800000 x44800000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px x435b0000
+        {0 0 0}
+        {x449a2c61 x42cade26}
+        {0 0 0}
+        {x3af00000 xc0125200}
+        {x449a2f2c x42d22eb6}
+        {x41a49ec0 x3f263800}
+        {xc1e2b840 x3e0b4000 0}
+        {x44f39671 x42d546a2 0}
+        {x3cbf0000 x40b0b000 0}
+        {xbeded000 xc122a200}
+        {x44f3a4ce x42f27872}
+        {x41db21c0 xc08c3b00}
+        {0 0 0}
+        {x44fd8563 x42cd0d92 0}
+        {0 0 0}
+        {0 0 0}
+        {x44f388f1 x42adf272 0}
+        {0 0 0}
+        {0 0 0}
+        {x44f390e0 x42cdcb82 0}
+        {0 0 0}}}
+      {cc
+       {f 8192}
+       {px x435b0000
+        {0 0}
+        {0 0}
+        {0 0}
+        {x3af00000 xc0125200}
+        {0 0}
+        {x41a49ec0 x3f263800}
+        {xc1e2b840 x3e0b4000 0}
+        {0 0 0}
+        {x3cbf0000 x40b0b000 0}
+        {xbeded000 xc122a200}
+        {0 0}
+        {x41db21c0 xc08c3b00}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}
+        {0 0 0}}}}
+     {tx x435b0000 x4359cccd x42cf3333}
+     {a osw x41200000 osf 0 str 1 spx x44800000 spy x44800000 sb 1 ltn x435b0000 ltm x435b0000 tt x40800000 b 0 g 0 r 0 ao 1}}
+    {curvegroup Bezier2 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x444c7af2}}
+	 {{x435b0000 x42cda1af}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 xbcb30000}}
+	 {{x435b0000 x40125320}}}
+        {{{x435b0000 x444c776d}}
+	 {{x435b0000 x42c650d7}}}
+        {{{x435b0000 xc1a49180}}
+	 {{x435b0000 xbf543400}}}
+        {{{x435b0000 x41e2b850}}
+	 {{x435b0000 x3de43800}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x42cd3fff}}
+	 {{x435b0000 x42c32a63}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x3cccd000}}
+	 {{x435b0000 xc0b0af80}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x3eb15d00}}
+	 {{x435b0000 x4122af90}}}
+        {{{x435b0000 x42cc9b70}}
+	 {{x435b0000 x42a5f6db}}}
+        {{{x435b0000 xc1db6dc0}}
+	 {{x435b0000 x40849250}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x41b90000}}
+	 {{x435b0000 x42ca0000}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x42cdc000}}
+	 {{x435b0000 x42ea8000}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x42cd8853}}
+	 {{x435b0000 x42caa63c}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}}}
+      {cc
+       {f 8192}
+       {p
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 xbcb30000}}
+	 {{x435b0000 x40125320}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 xc1a49180}}
+	 {{x435b0000 xbf543400}}}
+        {{{x435b0000 x41e2b850}}
+	 {{x435b0000 x3de43800}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x3cccd000}}
+	 {{x435b0000 xc0b0af80}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 x3eb15d00}}
+	 {{x435b0000 x4122af90}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 xc1db6dc0}}
+	 {{x435b0000 x40849250}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}
+        {{{x435b0000 0}}
+	 {{x435b0000 0}}
+	 {{x435b0000 0}}}}}}
+     {tx x435b0000 x4359cccd x42cf3333}
+     {a osw x41200000 osf 0 str 1 spx x44800000 spy x44800000 sb 1 ltn x435b0000 ltm x435b0000 tt x40800000 b 0 g 0 r 0 ao 1}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectCurves str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { addPoints str 1 ssx 1 ssy 1 sf 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1024 1024}
+ color {0 0 0 1}
+ colorOverlay {0 0 0 1}
+ lifetime_type "all frames"
+ lifetime_start 219
+ lifetime_end 219
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto1
+ xpos 201
+ ypos 364
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "2050 2050 0 0 2050 2050 1 2050"
+ name Constant1
+ xpos -370
+ ypos -153
+}
+Dot {
+ name Dot1
+ xpos -336
+ ypos -54
+}
+set Nde705f0 [stack 0]
+BlinkScript {
+ kernelSourceFile gridborder.rpp
+ recompileCount 66
+ ProgramGroup 1
+ KernelDescription "2 \"GridBorder\" iterate pixelWise 6f5d3bd1cbe1deb8834b266c9b877479d4a1d0eb54c953e9be6b7eca8153d2dc 2 \"src\" Read Point \"dst\" Write Point 3 \"Image Size\" Int 1 AAgAAA== \"Tile Count\" Int 1 CgAAAA== \"Border Width\" Int 1 AgAAAA== 3 \"size\" 1 1 \"tiling\" 1 1 \"width\" 1 1 0"
+ kernelSource "kernel GridBorder : ImageComputationKernel<ePixelWise> \{\n\n    // Input image\n    Image<eRead, eAccessPoint, eEdgeClamped> src;\n    // Output image\n    Image<eWrite, eAccessPoint> dst;\n    \n    param:\n        int size;\n        int tiling;\n        int width;\n\n    local:\n\n    void define() \{\n        defineParam(size, \"Image Size\", 2048);\n        defineParam(tiling, \"Tile Count\", 10);\n        defineParam(width, \"Border Width\", 2);\n    \}\n\n    void process(int2 pos) \{\n\n        float _size = (float)(size / tiling);\n        float x = fmod(pos.x, _size);\n        float y = fmod(pos.y, _size);\n        int sizeMinusWidth = _size - width - 2;\n\n        float r = 0;\n        \n        if ( x < width || y < width)\n        \{\n            r = 1;\n        \}\n        else if ( x >= sizeMinusWidth || y >= sizeMinusWidth)\n        \{\n            r = 1;\n        \}\n\n        dst () = r;\n    \}\n\};"
+ rebuild ""
+ "GridBorder_Image Size" 2050
+ "GridBorder_Tile Count" 1
+ "GridBorder_Border Width" 4
+ rebuild_finalise ""
+ name BlinkScript3
+ xpos -370
+ ypos 24
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+ name Shuffle2
+ xpos -338
+ ypos 158
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {-0.00234 -0.000509 0.002848 0}
+ color_panelDropped true
+ name N35_023
+ xpos 61
+ ypos 73
+}
+set Nc5604c0 [stack 0]
+push $Nde705f0
+BlinkScript {
+ kernelSourceFile gridborder.rpp
+ recompileCount 62
+ ProgramGroup 1
+ KernelDescription "2 \"GridBorder\" iterate pixelWise 5c30d734aeeedaa789a6479abd8c2980856334498fb3d47de7bedbb7bb0255f3 2 \"src\" Read Point \"dst\" Write Point 3 \"Image Size\" Int 1 AAgAAA== \"Tile Count\" Int 1 CgAAAA== \"Border Width\" Int 1 AgAAAA== 3 \"size\" 1 1 \"tiling\" 1 1 \"width\" 1 1 0"
+ kernelSource "kernel GridBorder : ImageComputationKernel<ePixelWise> \{\n\n    // Input image\n    Image<eRead, eAccessPoint, eEdgeClamped> src;\n    // Output image\n    Image<eWrite, eAccessPoint> dst;\n    \n    param:\n        int size;\n        int tiling;\n        int width;\n\n    local:\n\n    void define() \{\n        defineParam(size, \"Image Size\", 2048);\n        defineParam(tiling, \"Tile Count\", 10);\n        defineParam(width, \"Border Width\", 2);\n    \}\n\n    void process(int2 pos) \{\n\n        float _size = (float)(size / tiling);\n        float x = fmod(pos.x, _size);\n        float y = fmod(pos.y, _size);\n        int sizeMinusWidth = _size - width;\n\n        float r = 0;\n        \n        if ( x < width || y < width)\n        \{\n            r = 1;\n        \}\n        else if ( x >= sizeMinusWidth || y >= sizeMinusWidth)\n        \{\n            r = 1;\n        \}\n\n        dst () = r;\n    \}\n\};"
+ rebuild ""
+ "GridBorder_Image Size" 2050
+ rebuild_finalise ""
+ name BlinkScript2
+ xpos -286
+ ypos -17
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+ name Shuffle1
+ xpos -119
+ ypos -10
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.696989 0.702116 0.700895 0}
+ color_panelDropped true
+ name N65_021
+ xpos 147
+ ypos -69
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {1 1 1 0}
+ color_panelDropped true
+ name N8_1
+ xpos -24
+ ypos -190
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge2
+ xpos -40
+ ypos 63
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge3
+ xpos -40
+ ypos 150
+}
+push $Nc5604c0
+Blend {
+ inputs 2+1
+ channels rgb
+ weight0 0
+ maskChannelMask rgba.red
+ name Blend1
+ xpos -43
+ ypos 261
+}
+Reformat {
+ name Reformat1
+ xpos -95
+ ypos 413
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+ name Shuffle4
+ xpos -178
+ ypos 482
+}
+set Nb3538b20 [stack 0]
+Viewer {
+ frame_range 1-480
+ colour_sample_bbox {-0.4306640625 -0.91015625 -0.4296875 -0.9091796875}
+ samplepoints {{-0.88671875 -0.9169921875}
+   }
+ viewerProcess "sRGB (ACES)"
+ name Viewer1
+ xpos -207
+ ypos 374
+}
+push $Nb3538b20
+Write {
+ channels alpha
+ file "../grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr"
+ colorspace compositing_linear
+ file_type exr
+ first_part rgba
+ version 8
+ name Write1
+ selected true
+ xpos -260
+ ypos 546
+}

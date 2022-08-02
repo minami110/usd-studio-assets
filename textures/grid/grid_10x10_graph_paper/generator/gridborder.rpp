@@ -1,0 +1,41 @@
+kernel GridBorder : ImageComputationKernel<ePixelWise> {
+
+    // Input image
+    Image<eRead, eAccessPoint, eEdgeClamped> src;
+    // Output image
+    Image<eWrite, eAccessPoint> dst;
+    
+    param:
+        int size;
+        int tiling;
+        int width;
+
+    local:
+
+    void define() {
+        defineParam(size, "Image Size", 2048);
+        defineParam(tiling, "Tile Count", 10);
+        defineParam(width, "Border Width", 2);
+    }
+
+    void process(int2 pos) {
+
+        float _size = (float)(size / tiling);
+        float x = fmod(pos.x, _size);
+        float y = fmod(pos.y, _size);
+        int sizeMinusWidth = _size - width - 2;
+
+        float r = 0;
+        
+        if ( x < width || y < width)
+        {
+            r = 1;
+        }
+        else if ( x >= sizeMinusWidth || y >= sizeMinusWidth)
+        {
+            r = 1;
+        }
+
+        dst () = r;
+    }
+};
