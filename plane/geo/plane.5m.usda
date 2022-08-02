@@ -21,5 +21,6 @@ def Xform "geom" (
             interpolation = "faceVarying"
         )
         int[] primvars:st:indices = [3, 2, 1, 0]
+        uniform token subdivisionScheme = "none"
     }
 }
