@@ -54,6 +54,7 @@ def "this" (
         token inputs:projSpaceType = "0" # world-space
         color3f inputs:imageX.connect = </this/rsTexBaseColor.outputs:outColor>
         vector3f inputs:offset = (0.5, 0.5, 0.5)
+        vector3f inputs:scale = (1.0, 1.0, -1.0)
         color3f outputs:outColor
     }
 
@@ -64,7 +65,7 @@ def "this" (
         token inputs:projSpaceType = "0" # world-space
         color3f inputs:imageX.connect = </this/rsTexRoughness.outputs:outColor>
         vector3f inputs:offset = (0.5, 0.5, 0.5)
+        vector3f inputs:scale = (1.0, 1.0, -1.0)
         color3f outputs:outColor
     }
-
 }
