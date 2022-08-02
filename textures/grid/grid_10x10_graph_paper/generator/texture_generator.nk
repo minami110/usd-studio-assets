@@ -1,5 +1,4 @@
 #! /home/minami/.local/Nuke/13.2v2/libnuke-13.2.2.so -nx
-#write_info Write1 file:"../grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr" format:"2048 2048 1" chans:":rgba.alpha:" framerange:"1 480" fps:"0" colorspace:"compositing_linear	compositing_linear (ACES - ACEScg)" datatype:"16 bit half" transfer:"unknown" views:"main" colorManagement:"OCIO"
 version 13.2 v2
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
@@ -12,12 +11,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             <split size="1897" stretch="1"/>
             <splitter orientation="2">
                 <split size="780"/>
-                <dock id="" activePageId="Viewer.2" focus="true">
-                    <page id="Viewer.2"/>
+                <dock id="" activePageId="Viewer.1">
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="548"/>
-                <dock id="" activePageId="DAG.1">
+                <dock id="" activePageId="DAG.1" focus="true">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
@@ -36,8 +34,7 @@ Root {
  inputs 0
  name /home/minami/Desktop/limited/scene/usd-studio-assets/textures/grid/grid_10x10_graph_paper/generator/texture_generator.nk
  project_directory "\[python \{nuke.script_directory()\}]"
- frame 219
- last_frame 480
+ last_frame 1
  format "2048 2048 0 0 2048 2048 1 square_2K"
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
@@ -312,6 +309,7 @@ Roto {
  xpos 201
  ypos 364
 }
+set Na45c7a0 [stack 0]
 Constant {
  inputs 0
  channels rgb
@@ -325,7 +323,7 @@ Dot {
  xpos -336
  ypos -54
 }
-set Nde705f0 [stack 0]
+set Na4a6a80 [stack 0]
 BlinkScript {
  kernelSourceFile gridborder.rpp
  recompileCount 66
@@ -346,9 +344,10 @@ Shuffle2 {
  fromInput2 {{0} B}
  mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
  name Shuffle2
- xpos -338
- ypos 158
+ xpos -288
+ ypos 206
 }
+set Na5da360 [stack 0]
 Constant {
  inputs 0
  channels rgb
@@ -358,8 +357,8 @@ Constant {
  xpos 61
  ypos 73
 }
-set Nc5604c0 [stack 0]
-push $Nde705f0
+set Na30cdf0 [stack 0]
+push $Na4a6a80
 BlinkScript {
  kernelSourceFile gridborder.rpp
  recompileCount 62
@@ -378,17 +377,18 @@ Shuffle2 {
  fromInput2 {{0} B}
  mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
  name Shuffle1
- xpos -119
- ypos -10
+ xpos -132
+ ypos 2
 }
+set Naabbb20 [stack 0]
 Constant {
  inputs 0
  channels rgb
  color {0.696989 0.702116 0.700895 0}
  color_panelDropped true
  name N65_021
- xpos 147
- ypos -69
+ xpos 151
+ ypos -106
 }
 Constant {
  inputs 0
@@ -413,15 +413,15 @@ Merge2 {
  xpos -40
  ypos 150
 }
-push $Nc5604c0
+push $Na30cdf0
 Blend {
  inputs 2+1
  channels rgb
  weight0 0
  maskChannelMask rgba.red
  name Blend1
- xpos -43
- ypos 261
+ xpos -40
+ ypos 268
 }
 Reformat {
  name Reformat1
@@ -433,21 +433,9 @@ Shuffle2 {
  fromInput2 {{0} B}
  mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
  name Shuffle4
- xpos -178
+ xpos -179
  ypos 482
 }
-set Nb3538b20 [stack 0]
-Viewer {
- frame_range 1-480
- colour_sample_bbox {-0.4306640625 -0.91015625 -0.4296875 -0.9091796875}
- samplepoints {{-0.88671875 -0.9169921875}
-   }
- viewerProcess "sRGB (ACES)"
- name Viewer1
- xpos -207
- ypos 374
-}
-push $Nb3538b20
 Write {
  channels alpha
  file "../grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr"
@@ -456,7 +444,98 @@ Write {
  first_part rgba
  version 8
  name Write1
- selected true
  xpos -260
  ypos 546
+}
+push $Na45c7a0
+push $Na5da360
+Constant {
+ inputs 0
+ channels rgb
+ color {0.6 0.6 0.6 0}
+ color_panelDropped true
+ name roughness_black
+ xpos 530
+ ypos 72
+}
+set Nc9c81f0 [stack 0]
+push $Naabbb20
+Constant {
+ inputs 0
+ channels rgb
+ color {0.68 0.68 0.68 0}
+ color_panelDropped true
+ name roughness_gray
+ xpos 560
+ ypos -34
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0.72157 0.72157 0.72157 0}
+ color_panelDropped true
+ name roughness_white2
+ xpos 557
+ ypos -130
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge1
+ xpos 381
+ ypos 57
+}
+Merge2 {
+ inputs 2+1
+ operation copy
+ name Merge4
+ xpos 367
+ ypos 147
+}
+push $Nc9c81f0
+Blend {
+ inputs 2+1
+ channels rgb
+ weight0 0
+ maskChannelMask rgba.red
+ name Blend2
+ xpos 400
+ ypos 289
+}
+set Na3ce3c0 [stack 0]
+Viewer {
+ frame 1
+ frame_range 1-1
+ colour_sample_bbox {0.4970703125 -0.09765625 0.498046875 -0.0966796875}
+ samplepoints {{0.4970703125 -0.09765625}
+   }
+ viewerProcess "sRGB (ACES)"
+ name Viewer1
+ xpos 620
+ ypos 368
+}
+push $Na3ce3c0
+Reformat {
+ name Reformat2
+ xpos 425
+ ypos 389
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.red 0 0 rgba.alpha 0 3"
+ name Shuffle3
+ xpos 412
+ ypos 461
+}
+Write {
+ channels alpha
+ file "../grid_10x10_graph_paper.roughness.ACES - ACEScg.2k.exr"
+ colorspace compositing_linear
+ file_type exr
+ first_part rgba
+ version 10
+ name Write2
+ xpos 423
+ ypos 545
 }

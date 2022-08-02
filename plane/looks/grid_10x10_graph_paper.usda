@@ -4,7 +4,7 @@
 )
 
 def "this" (
-    references = @./_base.usda@</_base>
+    references = @./grid_16x16_border_chipped_corner.usda@</this>
 )
 {
     # -------------------------
@@ -12,9 +12,8 @@ def "this" (
     # -------------------------
     over "usdPreviewSurface"
     {
-        float inputs:roughness = 0.85
+        float inputs:roughness = 0.72157
     }
-
     over "usdTexDiffuse"
     {
         asset inputs:file = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
@@ -27,13 +26,20 @@ def "this" (
     {
         asset inputs:filename = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
     }
+    over "arTexRoughness"
+    {
+        asset inputs:filename = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.roughness.ACES - ACEScg.2k.exr@
+    }
 
     # -------------------------
     # Override Redshift Shaders
     # -------------------------
-    over Shader "rsTexBaseColor"
+    over "rsTexBaseColor"
     {
         asset inputs:tex0 = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.basecolor.ACES - ACEScg.2k.exr@
-        string inputs:tex0_colorSpace = "ACES - ACEScg"
+    }
+    over "rsTexRoughness"
+    {
+        asset inputs:tex0 = @../../textures/grid/grid_10x10_graph_paper/grid_10x10_graph_paper.roughness.ACES - ACEScg.2k.exr@
     }
 }
