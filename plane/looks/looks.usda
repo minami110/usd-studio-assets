@@ -1,0 +1,20 @@
+#usda 1.0
+(
+    defaultPrim = "looks"
+)
+
+def Scope "looks"
+{
+    def "grid_16x16_border_chipped_corner" (
+        append payload = @./grid_16x16_border_chipped_corner.usda@
+    ) { }
+    def "grid_16x16_worldspace" (
+        append payload = @./grid_16x16_border_chipped_corner_worldcoodrinate.usda@
+    ) { }
+    def "grid_10x10_graph_paper" (
+        append payload = @./grid_10x10_graph_paper.usda@
+    ) { }
+    def "grid_10x10_graph_paper_worldspace" (
+        append payload = @./grid_10x10_graph_paper_worldspace.usda@
+    ) { }
+}

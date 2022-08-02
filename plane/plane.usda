@@ -16,18 +16,9 @@ def Xform "plane" (
     }
 )
 {
-    def Scope "looks"
-    {
-        def "grid_16x16_border_chipped_corner" (
-            append payload = @./looks/grid_16x16_border_chipped_corner.usda@
-        ) { }
-        def "grid16x16_worldspace" (
-            append payload = @./looks/grid_16x16_border_chipped_corner_worldcoodrinate.usda@
-        ) { }
-        def "grid_10x10_graph_paper" (
-            append payload = @./looks/grid_10x10_graph_paper.usda@
-        ) { }
-    }
+    def "looks" (
+        append payload = @./looks/looks.usda@
+    ) {}
 
     variantSet "model" = {
         "1m" (
@@ -48,11 +39,14 @@ def Xform "plane" (
         "grid_16x16_border_chipped_corner" {
             rel material:binding = </plane/looks/grid_16x16_border_chipped_corner>
         }
-        "grid16x16_worldspace" {
-            rel material:binding = </plane/looks/grid16x16_worldspace>
+        "grid_16x16_worldspace" {
+            rel material:binding = </plane/looks/grid_16x16_worldspace>
         }
         "grid_10x10_graph_paper" {
             rel material:binding = </plane/looks/grid_10x10_graph_paper>
+        }
+        "grid_10x10_graph_paper_worldspace" {
+            rel material:binding = </plane/looks/grid_10x10_graph_paper_worldspace>
         }
     }
 }
