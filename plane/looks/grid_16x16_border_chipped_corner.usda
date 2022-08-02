@@ -50,7 +50,7 @@ def "this" (
         float inputs:refl_roughness.connect = </this/rsTexRoughness.outputs:outColor>
     }
 
-    over Shader "rsTexBaseColor"
+    over "rsTexBaseColor"
     {
         asset inputs:tex0 = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@
         string inputs:tex0_colorSpace = "ACES - ACEScg"
