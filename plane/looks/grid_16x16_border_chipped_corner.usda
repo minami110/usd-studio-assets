@@ -7,7 +7,9 @@ def "this" (
     references = @./_base.usda@</_base>
 )
 {
-    # Override USD Preview Surface
+    # -------------------------
+    # Override USD Shaders
+    # -------------------------
     over "usdPreviewSurface"
     {
         float inputs:roughness = 0.85
@@ -18,10 +20,12 @@ def "this" (
         asset inputs:file = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@
     }
 
-    # Override Arnold Standard Surface
+    # -------------------------
+    # Override Arnold Shaders
+    # -------------------------
     over "arStandardSurface"
     {
-        # Specular
+        # Connect roughness map
         float inputs:specular_roughness.connect = </this/arTexRoughness.outputs:out:r>
     }
 
@@ -35,5 +39,28 @@ def "this" (
         uniform token info:id = "image"
         asset inputs:filename = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.roughness.tiled.ACES - ACEScg.2k.exr@
         token outputs:out
+    }
+
+    # -------------------------
+    # Override Redshift Shaders
+    # -------------------------
+    over "rsStandardMaterial"
+    {
+        # Connect roughness map
+        float inputs:refl_roughness.connect = </this/rsTexRoughness.outputs:outColor>
+    }
+
+    over Shader "rsTexBaseColor"
+    {
+        asset inputs:tex0 = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@
+        string inputs:tex0_colorSpace = "ACES - ACEScg"
+    }
+
+    def Shader "rsTexRoughness"
+    {
+        uniform token info:id = "redshift::TextureSampler"
+        color3f outputs:outColor
+        asset inputs:tex0 = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.roughness.tiled.ACES - ACEScg.2k.exr@
+        string inputs:tex0_colorSpace = "ACES - ACEScg"
     }
 }

@@ -2,19 +2,25 @@
 
 class Material "_base"
 {
-    # ========================
-    # Material Outputs
-    # ========================
-    # USD Connections
+    # -------------------------
+    # Connections
+    # -------------------------
+
+    # Default Connections (USD / Karma / Houdini GL)
     token outputs:displacement.connect = </_base/usdPreviewSurface.outputs:displacement>
     token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
 
     # Arnold Connections
     token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:out>
 
-    # ========================
+    # Redshift Connections
+    token outputs:Redshift:surface.connect=</_base/rsStandardMaterial.outputs:outColor>
+
+    # -------------------------
+    # Default USD Shaders
+    # -------------------------
+
     # USD Shaders
-    # ========================
     def Shader "usdPreviewSurface"
     {
         uniform token info:id = "UsdPreviewSurface"
@@ -43,9 +49,9 @@ class Material "_base"
         float2 outputs:result
     }
 
-    # ========================
+    # -------------------------
     # Arnold Shaders
-    # ========================
+    # -------------------------
 
     def Shader "arStandardSurface"
     {
@@ -59,5 +65,21 @@ class Material "_base"
         uniform token info:id = "image"
         color4f outputs:out
     }
-}
 
+    # -------------------------
+    # Redshift Shaders
+    # -------------------------
+
+    def Shader "rsStandardMaterial"
+    {
+        uniform token info:id = "redshift::StandardMaterial"
+        token outputs:outColor
+        color3f inputs:base_color.connect = </_base/rsTexBaseColor.outputs:outColor>
+    }
+
+    def Shader "rsTexBaseColor"
+    {
+        uniform token info:id = "redshift::TextureSampler"
+        color3f outputs:outColor
+    }
+}

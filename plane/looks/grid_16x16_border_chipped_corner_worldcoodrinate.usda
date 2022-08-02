@@ -7,33 +7,64 @@ def "this" (
     references = @./grid_16x16_border_chipped_corner.usda@</this>
 )
 {
-    # Override Arnold Standard Surface
+    # -------------------------
+    # Override Arnold Shaders
+    # -------------------------
     over "arStandardSurface"
     {
-        # BaseColor
+        # Connect triplaner shaders
         color3f inputs:base_color.connect = </this/arTriplanerBaseColor.outputs:out>
-        # Specular
         float inputs:specular_roughness.connect = </this/arTriplanerRoughness.outputs:out:r>
     }
 
-    # Triplaner for BaseColor Image
+    # Triplaner for basecolor
     def Shader "arTriplanerBaseColor"
     {
         uniform token info:id = "triplanar"
-        # world-space
-        string inputs:coord_space = "0"
+        string inputs:coord_space = "0" # world-space
         color3f inputs:input.connect = </this/arTexBaseColor.outputs:out>
         vector3f inputs:offset = (0.5, 0.5, 0.5)
         color3f outputs:out
     }
 
+    # Triplaner for roughness
     def Shader "arTriplanerRoughness"
     {
         uniform token info:id = "triplanar"
-        # world-space
-        string inputs:coord_space = "0"
+        string inputs:coord_space = "0" # world-space
         color3f inputs:input.connect = </this/arTexRoughness.outputs:out>
         vector3f inputs:offset = (0.5, 0.5, 0.5)
         float outputs:out:r
     }
+
+    # -------------------------
+    # Override Redshift Shaders
+    # -------------------------
+    over "rsStandardMaterial"
+    {
+        # Connect triplaner shaders
+        color3f inputs:base_color.connect = </this/rsTriplanerBaseColor.outputs:outColor>
+        float inputs:refl_roughness.connect = </this/rsTriplanerRoughness.outputs:outColor>
+    }
+
+    # Triplaner for basecolor
+    def Shader "rsTriplanerBaseColor"
+    {
+        uniform token info:id = "redshift::TriPlanar"
+        token inputs:projSpaceType = "0" # world-space
+        color3f inputs:imageX.connect = </this/rsTexBaseColor.outputs:outColor>
+        vector3f inputs:offset = (0.5, 0.5, 0.5)
+        color3f outputs:outColor
+    }
+
+    # Triplaner for roughness
+    def Shader "rsTriplanerRoughness"
+    {
+        uniform token info:id = "redshift::TriPlanar"
+        token inputs:projSpaceType = "0" # world-space
+        color3f inputs:imageX.connect = </this/rsTexRoughness.outputs:outColor>
+        vector3f inputs:offset = (0.5, 0.5, 0.5)
+        color3f outputs:outColor
+    }
+
 }
