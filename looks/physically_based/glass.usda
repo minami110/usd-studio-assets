@@ -1,0 +1,41 @@
+#usda 1.0
+(
+    defaultPrim = "glass"
+)
+
+def "glass" (
+    references = @./_base.usda@</_base>
+)
+{
+    # Glass Shader
+    # Color Space: ACEScg
+
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (1.0, 1.0, 1.0)
+        float inputs:roughness = 0
+        float inputs:ior = 1.52
+        float inputs:opacity = 0
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        float inputs:specular_roughness = 0
+        float inputs:specular_IOR = 1.52
+        float inputs:transmission = 1
+        color3f inputs:transmission_color = (1.0, 1.0, 1.0)
+        float inputs:transmission_dispersion = 64
+    }
+
+    # Override Redshift Standard Material
+    over "rsStandardMaterial"
+    {
+        float inputs:refl_roughness = 0
+        float inputs:refl_ior = 1.52
+        float inputs:refr_weight = 1
+        color3f inputs:refr_color = (1.0, 1.0, 1.0)
+        float inputs:refr_abbe = 64
+    }
+}

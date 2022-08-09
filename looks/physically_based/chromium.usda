@@ -1,0 +1,38 @@
+#usda 1.0
+(
+    defaultPrim = "chromium"
+)
+
+def "chromium" (
+    references = @./_base.usda@</_base>
+)
+{
+    # Chromium Shader
+    # Color Space: ACEScg
+
+    # Override USD Preview Surface
+    over "usdPreviewSurface"
+    {
+        color3f inputs:diffuseColor = (0.552, 0.556, 0.554)
+        float inputs:roughness = 0.1
+        float inputs:metallic = 1
+    }
+
+    # Override Arnold Standard Surface
+    over "arStandardSurface"
+    {
+        color3f inputs:base_color = (0.552, 0.556, 0.554)
+        color3f inputs:specular_color = (0.572, 0.561, 0.672)
+        float inputs:specular_roughness = 0.1
+        float inputs:metalness = 1
+    }
+
+    # Override Redshift Standard Material
+    over "rsStandardMaterial"
+    {
+        color3f inputs:base_color = (0.552, 0.556, 0.554)
+        color3f inputs:refl_color = (0.572, 0.561, 0.672)
+        float inputs:refl_roughness = 0.1
+        float inputs:metalness = 1
+    }
+}

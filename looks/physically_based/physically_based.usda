@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    defaultPrim = "physically_based"
+)
+
+def Scope "physically_based"
+{
+    def "aluminum" (
+        append payload = @./aluminum.usda@
+    ) { }
+    def "brass" (
+        append payload = @./brass.usda@
+    ) { }
+    def "chromium" (
+        append payload = @./chromium.usda@
+    ) { }
+    def "cooking_oil" (
+        append payload = @./cooking_oil.usda@
+    ) { }
+    def "glass" (
+        append payload = @./glass.usda@
+    ) { }
+    def "water" (
+        append payload = @./water.usda@
+    ) { }
+}
