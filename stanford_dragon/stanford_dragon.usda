@@ -1,0 +1,27 @@
+#usda 1.0
+(
+    defaultPrim = "stanford_dragon"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "stanford_dragon" (
+    kind = "group"
+)
+{
+    def "proxy" (
+        append payload = @./geo/stanford_dragon.proxy.usdc@
+    )
+    {
+        uniform token purpose = "proxy"
+    }
+
+    def "render" (
+        append payload = @./geo/stanford_dragon.render.usdc@
+    )
+    {
+        rel proxyPrim = </stanford_dragon/proxy>
+        uniform token purpose = "render"
+    }
+}
+
