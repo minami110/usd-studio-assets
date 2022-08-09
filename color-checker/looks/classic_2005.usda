@@ -4,18 +4,24 @@
 )
 
 def "classic_2005" (
-    references = @./material_base.usda@</_material_base>
+    references = @./_base.usda@</_base>
 )
 {
-    # Override USD Preview Surface
+    # USD
     over "usdTexDiffuse"
     {
         asset inputs:file = @../textures/ColorChecker2005.tiled.basecolor.ACES - ACEScg.16bit.2k.exr@
     }
 
-    # Override Arnold Standard Surface
+    # Arnold
     over "arTexBaseColor"
     {
         asset inputs:filename = @../textures/ColorChecker2005.tiled.basecolor.ACES - ACEScg.16bit.2k.exr@
+    }
+
+    # Redshift
+    over "rsTexBaseColor"
+    {
+        asset inputs:tex0 = @../textures/ColorChecker2005.tiled.basecolor.ACES - ACEScg.16bit.2k.exr@
     }
 }

@@ -1,0 +1,88 @@
+#usda 1.0
+
+class Material "_base"
+{
+    # -------------------------
+    # Connections
+    # -------------------------
+
+    # Default Connections (USD / Karma / Houdini GL)
+    token outputs:displacement.connect = </_base/usdPreviewSurface.outputs:displacement>
+    token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
+
+    # Arnold Connections
+    token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:out>
+
+    # Redshift Connections
+    token outputs:Redshift:surface.connect=</_base/rsStandardMaterial.outputs:outColor>
+
+    # -------------------------
+    # Default USD Shaders
+    # -------------------------
+
+    def Shader "usdPreviewSurface"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        token outputs:displacement
+        token outputs:surface
+        color3f inputs:diffuseColor.connect = </_base/usdTexDiffuse.outputs:rgb>
+        float inputs:ior = 1
+        float inputs:roughness = 1
+    }
+
+    def Shader "usdTexDiffuse"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (1, 0, 0.5, 1)
+        float2 inputs:st.connect = </_base/usdSt.outputs:result>
+        token inputs:sourceColorSpace = "ACES - ACEScg"
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        vector3f outputs:rgb
+    }
+
+    def Shader "usdSt"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        token inputs:varname = "st"
+        float2 outputs:result
+    }
+
+    # -------------------------
+    # Arnold Shaders
+    # -------------------------
+
+    def Shader "arStandardSurface"
+    {
+        uniform token info:id = "standard_surface"
+        color3f inputs:base_color.connect = </_base/arTexBaseColor.outputs:out>
+        float inputs:specular = 0
+        token outputs:arnold:surface
+    }
+
+    def Shader "arTexBaseColor"
+    {
+        uniform token info:id = "image"
+        token outputs:out
+    }
+
+    # -------------------------
+    # Redshift Shaders
+    # -------------------------
+
+    def Shader "rsStandardMaterial"
+    {
+        uniform token info:id = "redshift::StandardMaterial"
+        token outputs:outColor
+        color3f inputs:base_color.connect = </_base/rsTexBaseColor.outputs:outColor>
+        float inputs:refl_weight = 0
+    }
+
+    def Shader "rsTexBaseColor"
+    {
+        uniform token info:id = "redshift::TextureSampler"
+        color3f outputs:outColor
+        string inputs:tex0_colorSpace = "ACES - ACEScg"
+    }
+}
+
