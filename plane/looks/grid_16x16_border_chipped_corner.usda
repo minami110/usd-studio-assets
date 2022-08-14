@@ -63,4 +63,15 @@ def "this" (
         asset inputs:tex0 = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.roughness.tiled.ACES - ACEScg.2k.exr@
         string inputs:tex0_colorSpace = "ACES - ACEScg"
     }
+
+    # -------------------------
+    # Override Omniverse Shaders
+    # -------------------------
+
+    over "omOmniSurfaceLite"
+    {
+        asset inputs:diffuse_reflection_color_image = @../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr@ (
+            colorSpace = "raw"
+        )
+    }
 }

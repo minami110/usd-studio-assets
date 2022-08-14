@@ -16,6 +16,11 @@ class Material "_base"
     # Redshift Connections
     token outputs:Redshift:surface.connect=</_base/rsStandardMaterial.outputs:outColor>
 
+    # Omniverse Connections
+    token outputs:mdl:displacement.connect = </_base/omOmniSurfaceLite.outputs:out>
+    token outputs:mdl:surface.connect = </_base/omOmniSurfaceLite.outputs:out>
+    token outputs:mdl:volume.connect = </_base/omOmniSurfaceLite.outputs:out>
+
     # -------------------------
     # Default USD Shaders
     # -------------------------
@@ -81,5 +86,16 @@ class Material "_base"
     {
         uniform token info:id = "redshift::TextureSampler"
         color3f outputs:outColor
+    }
+
+    # -------------------------
+    # Omniverse Shaders
+    # -------------------------
+    def Shader "omOmniSurfaceLite"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:mdl:sourceAsset = @OmniSurfaceLite.mdl@
+        uniform token info:mdl:sourceAsset:subIdentifier = "OmniSurfaceLite"
+        token outputs:out
     }
 }
