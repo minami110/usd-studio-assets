@@ -1,0 +1,166 @@
+#usda 1.0
+(
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def "world" {
+    def DomeLight "envlight"
+    {
+        float inputs:intensity = 1
+        float inputs:exposure = 0
+        bool inputs:enableColorTemperature = 0
+        asset inputs:texture:file = @../../textures/hdri/studio_white_umbrella_soft_light.tiled.ACES - ACEScg.32bit.2k.exr@
+        token inputs:texture:format = "latlong"
+    }
+
+    def "mori_knob_01" (
+        prepend references = @../../mori_knob/mori_knob.usdc@
+    )
+    {
+        over "inner" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/gray>
+        }
+
+        over "outer" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/redglass>
+        }
+    }
+
+    def "mori_knob_02" (
+        prepend references = @../../mori_knob/mori_knob.usdc@
+    )
+    {
+        matrix4d xformOp:transform:transform1 = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform:transform1"]
+
+        over "inner" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/gray>
+        }
+
+        over "outer" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/grid>
+        }
+    }
+
+    def "mori_knob_03" (
+        prepend references = @../../mori_knob/mori_knob.usdc@
+    )
+    {
+        matrix4d xformOp:transform:transform1 = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (3, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform:transform1"]
+
+        over "inner" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/gray>
+        }
+
+        over "outer" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/USD_Gold>
+        }
+    }
+
+    def "mori_knob_04" (
+        prepend references = @../../mori_knob/mori_knob.usdc@
+    )
+    {
+        matrix4d xformOp:transform:transform1 = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 1.5, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform:transform1"]
+
+        over "inner" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/gray>
+        }
+
+        over "outer" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/blue>
+        }
+    }
+
+    def "mori_knob_05" (
+        prepend references = @../../mori_knob/mori_knob.usdc@
+    )
+    {
+        matrix4d xformOp:transform:transform1 = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1.5, 0, 1.5, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform:transform1"]
+
+        over "inner" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/gray>
+        }
+
+        over "outer" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </world/looks/green>
+        }
+    }
+
+    def "looks" (
+        prepend references = [
+            @./looks/redglass.mtlx@</MaterialX/Materials>,
+            @./looks/gray.mtlx@</MaterialX/Materials>,
+            @./looks/grid.mtlx@</MaterialX/Materials>,
+            @./looks/usd_preview_surface_gold.mtlx@</MaterialX/Materials>
+        ]
+    )
+    {
+        # Standard Surface
+        def Material "blue"
+        {
+            token outputs:mtlx:surface.connect = </world/looks/blue/mtlxstandard_surface.outputs:out>
+            def Shader "mtlxstandard_surface"
+            {
+                uniform token info:id = "ND_standard_surface_surfaceshader"
+                color3f inputs:base_color = (0.075, 0.075, 0.3) 
+                token outputs:out
+            }
+        }
+
+        # Oren Nayar Diffuse BSDF
+        def Material "green"
+        {
+            token outputs:mtlx:surface.connect = </world/looks/green/mtlxsurface.outputs:out>
+            def Shader "mtlxsurface"
+            {
+                uniform token info:id = "ND_surface"
+                string inputs:bsdf.connect = </world/looks/green/mtlxoren_nayar_diffuse_bsdf.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "mtlxoren_nayar_diffuse_bsdf"
+            {
+                uniform token info:id = "ND_oren_nayar_diffuse_bsdf"
+                color3f inputs:color = (0.109, 0.5, 0.128)
+                token outputs:out
+            }
+        }
+    }
+}

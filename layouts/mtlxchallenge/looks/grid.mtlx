@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<materialx version="1.38">
+  <nodegraph name="gray_graph">
+    <output name="base_color_output" type="color3" nodename="mtlximage" />
+    <image name="mtlximage" type="color3" GLSLFX_usage="baseColor" expose="true">
+      <input name="file" type="filename" value="../../../textures/grid/grid_16x16_border_chipped_corner/grid_16x16_border_chipped_corner.basecolor.tiled.ACES - ACEScg.2k.exr" />
+    </image>
+  </nodegraph>
+  <surfacematerial name="grid" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="mtlxstandard_surface"/>
+  </surfacematerial>
+  <standard_surface name="mtlxstandard_surface" type="surfaceshader">
+    <input name="base_color" type="color3" output="base_color_output" nodegraph="gray_graph" />
+  </standard_surface>
+</materialx>

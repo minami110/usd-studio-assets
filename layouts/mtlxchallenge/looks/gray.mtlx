@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<materialx version="1.38">
+  <surfacematerial name="gray" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="mtlxstandard_surface"/>
+  </surfacematerial>
+  <standard_surface name="mtlxstandard_surface" type="surfaceshader">
+    <input name="base_color" type="color3" value="0.18, 0.18, 0.18" />
+    <input name="specular_roughness" type="float" value="0.5" />
+  </standard_surface>
+</materialx>
