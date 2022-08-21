@@ -10,11 +10,26 @@ class Material "_base"
     token outputs:displacement.connect = </_base/usdPreviewSurface.outputs:displacement>
     token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
 
+    # MaterialX Connections
+    token outputs:mtlx:surface.connect = </_base/mtlxStandardSurface.outputs:out>
+
     # Arnold Connections
     token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:shader>
 
     # Redshift Connections
     token outputs:Redshift:surface.connect=</_base/rsStandardMaterial.outputs:outColor>
+
+    # ========================
+    # USER VALUES
+    # ========================
+    color3f inputs:base_color = (0.8, 0.8, 0.8)
+    float inputs:metalness = 0
+    color3f inputs:specular_color = (1.0, 1.0, 1.0)
+    float inputs:specular_IOR = 1.5
+    float inputs:specular_roughness = 0.2
+    float inputs:transmission = 0
+    color3f inputs:transmission_color = (1.0, 1.0, 1.0)
+    float inputs:transmission_dispersion = 0
 
     # ========================
     # Default USD Shaders
@@ -25,6 +40,28 @@ class Material "_base"
         uniform token info:id = "UsdPreviewSurface"
         token outputs:displacement
         token outputs:surface
+        color3f inputs:diffuseColor.connect = </_base.inputs:base_color>
+        float inputs:metallic.connect = </_base.inputs:metalness>
+        float inputs:roughness.connect = </_base.inputs:specular_roughness>
+        float inputs:ior.connect = </_base.inputs:specular_IOR>
+    }
+
+    # ========================
+    # MaterialX Shaders
+    # ========================
+
+    def Shader "mtlxStandardSurface"
+    {
+        uniform token info:id = "ND_standard_surface_surfaceshader"
+        token outputs:out
+        color3f inputs:base_color.connect = </_base.inputs:base_color>
+        float inputs:metalness.connect = </_base.inputs:metalness>
+        color3f inputs:specular_color.connect = </_base.inputs:specular_color>
+        float inputs:specular_IOR.connect = </_base.inputs:specular_IOR>
+        float inputs:specular_roughness.connect = </_base.inputs:specular_roughness>
+        float inputs:transmission.connect = </_base.inputs:transmission>
+        color3f inputs:transmission_color.connect = </_base.inputs:transmission_color>
+        float inputs:transmission_dispersion.connect = </_base.inputs:transmission_dispersion>
     }
 
     # ========================
@@ -33,8 +70,16 @@ class Material "_base"
 
     def Shader "arStandardSurface"
     {
-        uniform token info:id = "arnold::standard_surface"
+        uniform token info:id = "arnold:standard_surface"
         token outputs:shader
+        color3f inputs:base_color.connect = </_base.inputs:base_color>
+        float inputs:metalness.connect = </_base.inputs:metalness>
+        color3f inputs:specular_color.connect = </_base.inputs:specular_color>
+        float inputs:specular_IOR.connect = </_base.inputs:specular_IOR>
+        float inputs:specular_roughness.connect = </_base.inputs:specular_roughness>
+        float inputs:transmission.connect = </_base.inputs:transmission>
+        color3f inputs:transmission_color.connect = </_base.inputs:transmission_color>
+        float inputs:transmission_dispersion.connect = </_base.inputs:transmission_dispersion>
     }
 
     # ========================
@@ -43,9 +88,16 @@ class Material "_base"
 
     def Shader "rsStandardMaterial"
     {
-        uniform token info:id = "redshift::StandardMaterial"
+        uniform token info:id = "redshift:StandardMaterial"
         token outputs:outColor
+        color3f inputs:base_color.connect = </_base.inputs:base_color>
+        float inputs:metalness.connect = </_base.inputs:metalness>
+        color3f inputs:refl_color.connect = </_base.inputs:specular_color>
+        float inputs:refl_ior.connect = </_base.inputs:specular_IOR>
+        float inputs:refl_roughness.connect = </_base.inputs:specular_roughness>
+        float inputs:refr_weight.connect = </_base.inputs:transmission>
+        color3f inputs:refr_color.connect = </_base.inputs:transmission_color>
+        float inputs:refr_abbe.connect = </_base.inputs:transmission_dispersion>
     }
-
 }
 

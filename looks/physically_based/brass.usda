@@ -7,32 +7,8 @@ def "brass" (
     references = @./_base.usda@</_base>
 )
 {
-    # Brass Shader
-    # Color Space: ACEScg
-
-    # Override USD Preview Surface
-    over "usdPreviewSurface"
-    {
-        color3f inputs:diffuseColor = (0.832, 0.791, 0.482)
-        float inputs:roughness = 0.1
-        float inputs:metallic = 1
-    }
-
-    # Override Arnold Standard Surface
-    over "arStandardSurface"
-    {
-        color3f inputs:base_color = (0.832, 0.791, 0.482)
-        color3f inputs:specular_color = (0.977, 0.975, 0.861)
-        float inputs:specular_roughness = 0.1
-        float inputs:metalness = 1
-    }
-
-    # Override Redshift Standard Material
-    over "rsStandardMaterial"
-    {
-        color3f inputs:base_color = (0.832, 0.791, 0.482)
-        color3f inputs:refl_color = (0.977, 0.975, 0.861)
-        float inputs:refl_roughness = 0.1
-        float inputs:metalness = 1
-    }
+    color3f inputs:base_color = (0.832, 0.791, 0.482)
+    color3f inputs:specular_color = (0.977, 0.975, 0.861)
+    float inputs:specular_roughness = 0.1
+    float inputs:metalness = 1
 }

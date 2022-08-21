@@ -20,6 +20,12 @@ def Scope "physically_based"
     def "glass" (
         append payload = @./glass.usda@
     ) { }
+    def "gold" (
+        append payload = @./gold.usda@
+    ) { }
+    def "iron" (
+        append payload = @./iron.usda@
+    ) { }
     def "water" (
         append payload = @./water.usda@
     ) { }
