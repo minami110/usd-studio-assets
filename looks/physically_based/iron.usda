@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    defaultPrim = "iron"
+)
+
+def "iron" (
+    references = @./_base.usda@</_base>
+)
+{
+    color3f inputs:base_color = (0.523, 0.513, 0.498)
+    float inputs:metalness = 1
+    color3f inputs:specular_color = (0.561, 0.543, 0.581)
+    float inputs:specular_roughness = 0.1
+}
