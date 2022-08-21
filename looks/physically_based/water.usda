@@ -7,35 +7,11 @@ def "water" (
     references = @./_base.usda@</_base>
 )
 {
-    # Water Shader
-    # Color Space: ACEScg
+    float inputs:specular_roughness = 0
+    float inputs:specular_IOR = 1.3325
+    float inputs:transmission = 1
+    color3f inputs:transmission_color = (1.0, 1.0, 1.0)
+    float inputs:transmission_dispersion = 55.78
 
-    # Override USD Preview Surface
-    over "usdPreviewSurface"
-    {
-        color3f inputs:diffuseColor = (1.0, 1.0, 1.0)
-        float inputs:roughness = 0
-        float inputs:ior = 1.3325
-        float inputs:opacity = 0
-    }
-
-    # Override Arnold Standard Surface
-    over "arStandardSurface"
-    {
-        float inputs:specular_roughness = 0
-        float inputs:specular_IOR = 1.3325
-        float inputs:transmission = 1
-        color3f inputs:transmission_color = (1.0, 1.0, 1.0)
-        float inputs:transmission_dispersion = 55.78
-    }
-
-    # Override Redshift Standard Material
-    over "rsStandardMaterial"
-    {
-        float inputs:refl_roughness = 0
-        float inputs:refl_ior = 1.3325
-        float inputs:refr_weight = 1
-        color3f inputs:refr_color = (1.0, 1.0, 1.0)
-        float inputs:refr_abbe = 55.78
-    }
+    bool inputs:omni_enable_transmission = True
 }

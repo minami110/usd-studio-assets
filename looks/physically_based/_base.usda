@@ -6,7 +6,7 @@ class Material "_base"
     # Connections
     # ========================
 
-    # Default Connections (USD / Karma / Houdini GL)
+    # USD Connections (usdview / Houdini GL)
     token outputs:displacement.connect = </_base/usdPreviewSurface.outputs:displacement>
     token outputs:surface.connect = </_base/usdPreviewSurface.outputs:surface>
 
@@ -17,7 +17,12 @@ class Material "_base"
     token outputs:arnold:surface.connect = </_base/arStandardSurface.outputs:shader>
 
     # Redshift Connections
-    token outputs:Redshift:surface.connect=</_base/rsStandardMaterial.outputs:outColor>
+    token outputs:Redshift:surface.connect = </_base/rsStandardMaterial.outputs:outColor>
+
+    # Omniverse Connections
+    token outputs:mdl:displacement.connect = </_base/omniSurface.outputs:out>
+    token outputs:mdl:surface.connect = </_base/omniSurface.outputs:out>
+    token outputs:mdl:volume.connect = </_base/omniSurface.outputs:out>
 
     # ========================
     # USER VALUES
@@ -31,8 +36,11 @@ class Material "_base"
     color3f inputs:transmission_color = (1.0, 1.0, 1.0)
     float inputs:transmission_dispersion = 0
 
+    # Omniverse specific
+    bool inputs:omni_enable_transmission = False
+
     # ========================
-    # Default USD Shaders
+    # USD Shaders
     # ========================
 
     def Shader "usdPreviewSurface"
@@ -54,6 +62,7 @@ class Material "_base"
     {
         uniform token info:id = "ND_standard_surface_surfaceshader"
         token outputs:out
+
         color3f inputs:base_color.connect = </_base.inputs:base_color>
         float inputs:metalness.connect = </_base.inputs:metalness>
         color3f inputs:specular_color.connect = </_base.inputs:specular_color>
@@ -72,6 +81,7 @@ class Material "_base"
     {
         uniform token info:id = "arnold:standard_surface"
         token outputs:shader
+
         color3f inputs:base_color.connect = </_base.inputs:base_color>
         float inputs:metalness.connect = </_base.inputs:metalness>
         color3f inputs:specular_color.connect = </_base.inputs:specular_color>
@@ -90,6 +100,7 @@ class Material "_base"
     {
         uniform token info:id = "redshift::StandardMaterial"
         token outputs:outColor
+
         color3f inputs:base_color.connect = </_base.inputs:base_color>
         float inputs:metalness.connect = </_base.inputs:metalness>
         color3f inputs:refl_color.connect = </_base.inputs:specular_color>
@@ -99,5 +110,36 @@ class Material "_base"
         color3f inputs:refr_color.connect = </_base.inputs:transmission_color>
         float inputs:refr_abbe.connect = </_base.inputs:transmission_dispersion>
     }
-}
 
+    # ========================
+    # Omniverse Shaders
+    # ========================
+
+    # OmniSurface shader
+    # https://docs.omniverse.nvidia.com/app_create/prod_materials-and-rendering/materials.html
+    def Shader "omniSurface"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:mdl:sourceAsset = @OmniSurface.mdl@
+        uniform token info:mdl:sourceAsset:subIdentifier = "OmniSurface"
+        token outputs:out
+
+        # base_color
+        color3f inputs:diffuse_reflection_color.connect = </_base.inputs:base_color>
+        # metalness
+        float inputs:metalness.connect = </_base.inputs:metalness>
+        # specular_color
+        color3f inputs:specular_reflection_color.connect = </_base.inputs:specular_color>
+        # specular_IOR
+        float inputs:specular_reflection_ior.connect = </_base.inputs:specular_IOR>
+        # specular_roughness
+        float inputs:specular_reflection_roughness.connect = </_base.inputs:specular_roughness>
+        # transmission (weight)
+        bool inputs:enable_specular_transmission.connect = </_base.inputs:omni_enable_transmission>
+        float inputs:specular_transmission_weight.connect = </_base.inputs:transmission>
+        # transmission_color
+        color3f inputs:specular_transmission_color.connect = </_base.inputs:transmission_color>
+        # transmission_dispersion (Abbe)
+        float inputs:specular_transmission_dispersion_abbe.connect = </_base.inputs:transmission_dispersion>
+    }
+}

@@ -12,4 +12,6 @@ def "glass" (
     float inputs:transmission = 1
     color3f inputs:transmission_color = (1.0, 1.0, 1.0)
     float inputs:transmission_dispersion = 64
+
+    bool inputs:omni_enable_transmission = True
 }

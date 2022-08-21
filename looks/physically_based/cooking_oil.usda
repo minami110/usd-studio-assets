@@ -11,4 +11,6 @@ def "cooking_oil" (
     float inputs:specular_IOR = 1.47
     float inputs:transmission = 1
     color3f inputs:transmission_color = (0.690, 0.683, 0.17)
+
+    bool inputs:omni_enable_transmission = True
 }
