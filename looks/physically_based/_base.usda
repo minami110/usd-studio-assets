@@ -88,7 +88,7 @@ class Material "_base"
 
     def Shader "rsStandardMaterial"
     {
-        uniform token info:id = "redshift:StandardMaterial"
+        uniform token info:id = "redshift::StandardMaterial"
         token outputs:outColor
         color3f inputs:base_color.connect = </_base.inputs:base_color>
         float inputs:metalness.connect = </_base.inputs:metalness>
